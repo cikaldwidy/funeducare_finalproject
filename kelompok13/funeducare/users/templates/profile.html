@@ -1,0 +1,400 @@
+{% extends 'base/base_element.html' %}{% load humanize %} {% load static %} {% block head_title %}
+FunEduCare - Profile Anak {% endblock head_title %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile-style.css' %}" /> {% endblock %} {% block body_block %}
+<div class="d-flex flex-row justify-content-end text-end me-3 mt-2 mb-2 p-2">
+  <div class="me-2">
+<a style="font-size:18px;text-decoration:none;color:black;" href="{% url 'home:home' %}"><i class="fa-solid fa-house "> / </i></a>
+  </div>
+<div class="me-3">
+<form action="{% url 'users:logout' %}" method="post">
+  {% csrf_token %}
+  <button
+    type="submit"
+    class="nav-link text-dark"
+    style="font-size: 18px; font-weight: 600"
+  >
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Logout
+  </button>
+</form>
+</div>
+</div>
+<div class="container-fluid">
+  {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <!-- Jika error tampilkan warna merah -->
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+      {% else %}
+        <!-- Untuk pesan informasi dan lainnya -->
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-lg-3">
+      <div class="sidebar p-2 rounded content-profil">
+        {% if form.profile_image.value %}
+        <img
+          src="{{ form.profile_image.value.url }}"
+          alt="Profile Image"
+          class="rounded-circle mx-auto d-block mb-3 "
+          style="width: 150px; height: 147px"
+        />
+        {% elif request.user.profile_image %}
+        <img
+          src="{{ request.user.profile_image.url }}"
+          alt="Profile Image"
+          class="rounded-circle mx-auto d-block mb-3"
+          style="width: 150px; height: 147px"
+        />
+        {% else %}
+        <img
+          src="{% static 'images/IMG_6643.png' %}"
+          alt="Profile Image"
+          class="rounded-circle mx-auto d-block mb-3 bg-secondary"
+          style="width: 150px; height: 147px"
+        />
+        {% endif %}
+        <h4 class="text-center"><span>Hii!</span>  {{ user.username }}</h4>
+        <p class="text-center"><i class="fa-solid fa-envelope"></i> {{ user.email }}</p>
+      </div>
+      
+      <button type="button" id="editButton" class="btn btn-secondary mt-2">
+        <i class="fa-solid fa-gear me-2"></i> Pengaturan Akun
+      </button>
+    <div class="d-flex flex-row gap-2 mt-2 pw">
+      <p style="font-size:17px;font-weight:500">Ganti Password? </p>
+      <a href="{% url 'users:change_password' %}" 
+        >Klik here</a
+      >       
+      </div>
+
+
+      <!-- Modal untuk Edit Profil -->
+      <div id="editModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Akun Profil Anda</h5>
+              <button
+                type="button"
+                class="close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                  <label for="id_username">Nama Lengkap <span
+                      class="text-danger"
+                      style="font-size: 20px; font-weight: 600"
+                      >*</span
+                    ></label>
+                  {{ form.username }}
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="id_first_name">Nama Depan <span
+                      class="text-danger"
+                      style="font-size: 20px; font-weight: 600"
+                      >*</span
+                    ></label>
+                  {{ form.first_name }}
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="id_last_name">Nama Belakang <span
+                      class="text-danger"
+                      style="font-size: 20px; font-weight: 600"
+                      >*</span
+                    ></label>
+                  {{ form.last_name }}
+                </div>
+                <div class="mb-3">
+                  <label for="id_gender" class="form-label">Jenis Kelamin <span
+                      class="text-danger"
+                      style="font-size: 20px; font-weight: 600"
+                      >*</span
+                    ></label>
+                  {{ form.gender }}
+              </div>
+                <div class="form-group mb-3">                     
+                  <label for="id_no_telp">Telepon/HP <span
+                      class="text-danger"
+                      style="font-size: 20px; font-weight: 600"
+                      >*</span
+                    ></label>
+                  <p>no.telp anda ! Contoh : 08xxxxxxxxxx</p>
+                  {{ form.no_telp }}
+                </div>
+            
+                <div class="form-group mb-3 ">                
+                  <label for="id_alamat">Alamat Asal <span
+                      class="text-danger"
+                      style="font-size: 20px; font-weight: 600"
+                      >*</span
+                    ></label>
+                  <p>Isikan dengan format ! Provinsi/Kota</p>
+                  {{ form.alamat }}
+                </div>
+
+                <hr
+                class="border border-dark border-1 mt-3"
+                style="border-style: dashed"
+              />
+                <!-- Profile Image Upload Section -->
+                <h4>Edit Foto Profil Anda</h4>
+                <div class=" mt-3 mb-3 delete">
+                  <label for="id_profile_image" class="img">
+                    <i class="fa fa-upload"></i> Ubah Gambar
+                  </label>
+                  {{ form.profile_image }}
+                  <p>Format : PNG/JPG/SVG (Dimensions : 255 x 255)</p>
+                 
+                </div>
+
+                <!-- Delete Profile Image Section -->
+                <div class="mb-3">
+                  <label for="delete_image" class="img">
+                    <i class="fa fa-trash"></i> Hapus Gambar
+                  </label>
+                  <input
+                    class="chechkbox"
+                    type="checkbox"
+                    name="delete_image"
+                    id="delete_image"
+                  />
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                  Perbarui Akun
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <!-- Main Content -->
+    <div class="col-lg-9">
+      <div class="content">
+        <!-- Akun Section -->
+         <div class=" d-lg-flex flex-row gap-lg-5">
+        <div class="card col-lg-5 konten-1 mb-4">
+          <div class="card-header p-2">
+            <h5><i class="fa-solid fa-user"></i> Informasi Pengguna</h5>
+          </div>
+          <div class="card-body">
+            <p>
+              <strong><i class="fa-regular fa-user "></i> Nama</strong> {{ user.username|default:'-' }}
+            </p>
+            <p>
+              <strong><i class="fa-solid fa-mars-and-venus "></i> Jenis Kelamin</strong> {{ user.gender|default:'-' }}
+            </p>
+            <p>
+              <strong><i class="fa-solid fa-square-phone "></i> Telepon</strong> {{ user.no_telp|default:'-'  }}
+            </p>
+            <p>
+              <strong><i class="fa-solid fa-location-dot "></i> Alamat</strong> {{ user.alamat|default:'-' }}
+            </p>
+          </div>
+        </div>
+        <div class="card col-lg-5 konten-2 mb-4">
+          <div class="card-header p-2">
+            <h5><i class="fa-solid fa-child "></i> Pendaftaran Anak</h5>
+          </div>
+          <div class="card-body">
+            <div class="text-end me-5">
+            <a class="me-5" href="{% url 'users:profile' %}" style="font-size:27px;text-decoration:none;">Add Child</a>
+            <i class="fa-solid fa-child " style="font-size:130px;opacity:50%"></i>
+            </div>
+          </div>
+        </div>     
+      </div>
+
+   
+      <div class="greeting-container col-lg-10 ms-4 text-center rounded-4 ">
+        <div class="greeting">
+            <div class="greeting-message" id="greetingMessage"></div>
+            <div class="current-time" id="currentTime"></div>
+        </div>
+        <a href="{% url 'programs:programs' %}" class="btn-transparent mt-3" style="font-size:30px">
+          <i class="fa-solid fa-child me-3"></i>
+          Pilih Program Anak
+        </a>
+        </div>
+    
+
+    <div class="d-lg-flex flex-row gap-5">
+      <div class="card col-lg-5 konten-3 mb-4">
+        <div class="card-header p-2">
+          <h5><i class="fa-regular fa-user"></i> Profile Anak</h5>
+        </div>
+        <div class="card-body p-3">
+          <div class="text-end me-5">
+          <a class="me-5" href="{% url 'users:profile_view' %}" style="font-size:27px;text-decoration:none;">More Info</a>
+          <i class="fa-solid fa-address-card" style="font-size:120px;opacity:50%"></i>
+          </div>
+        </div>
+         <!-- Riwayat Pembayaran Section -->
+       </div>
+        <div class="card col-lg-5 konten-4 mb-4">
+        <div class="card-header p-2">
+          <h5><i class="fa-solid fa-clock-rotate-left"></i> Status Pembayaran</h5>
+         </div>
+           <div class="card-body p-3">
+            <div class="text-end me-5">
+            <a class="me-5" href="{% url 'users:riwayat_pembayaran' %}" style="font-size:27px;text-decoration:none;">More Info</a>
+           <i class="fa-solid fa-money-check-dollar" style="font-size:120px;opacity:50%"></i>
+           </div>
+          </div>
+        </div>
+      </div>
+       
+        <!-- Program Aktif Section -->
+        
+        <div class="card col-lg-10 konten-5 mb-4 p-3 ms-4">
+          <div class="card-header mb-5" id="program-header" style="cursor: pointer;">
+            <h5><i class="fa-regular fa-calendar-check"></i> Program Aktif</h5>
+          </div>
+          <div class="program-content" style="display: none;">
+            {% if active_programs %}
+            <div class="row">
+              {% for program in active_programs %}
+              <div class="col-md-5 mb-4 mx-auto">
+                <div class="card program h-100 shadow-sm">
+                  <div class="card-body">
+                    <li class="text-success" style="font-size:17px;font-weight:600;"><i class="fa-solid fa-circle-check"></i> {{ pendaftaran.get_status_display }}</li>
+                    <h4 class="card-title">{{ program.program_name }}</h4>
+                    <h6 class="nama-anak">
+                      <i class="fa-solid fa-user"></i> {{ program.child_name }}
+                    </h6>
+                    <li class="kegiatan-id">
+                      <i class="fas fa-id-card"></i>
+                      {{ program.id }}
+                    </li>
+                    <li style="font-size:15px;font-weight:600;color:#1f1f21">                        
+                      <i class="fas fa-calendar-alt me-2"></i>
+                      Tgl.Daftar: {{ program.registration_date|date:"d M Y" }}
+                    </li>
+                    <hr class="my-2">
+                    <p class="card-text deskripsi mt-3">
+                      Deskripsi: {{ program.program_description|truncatewords:12 }}
+                    </p>
+                    <ul class="list-unstyled status">
+                      <li  style="font-size:15px;font-weight:600;color:#1f1f21">
+                        <i class="fas fa-tag"></i>
+                        Jenis Program: {{ program.fee_type }}
+                      </li>
+                      <li  style="font-size:15px;font-weight:600;color:#1f1f21">
+                        <i class="fas fa-user-friends"></i>
+                        Rate Usia: {{ program.age_range }}
+                      </li>
+                      <li style="font-size:15px;font-weight:600;color:#1f1f21"><i class="fa-solid fa-hourglass-start me-2"></i> start program: {{ program.program_start_date|date:"d M Y" }}</li>
+                      <li style="font-size:15px;font-weight:600;color:#1f1f21"><i class="fa-solid fa-hourglass-start me-2"></i> finish program: {{ program.program_end_date|date:"d M Y" }}</li>                    
+                      
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-info text-center" role="alert">
+              Anda belum memiliki program aktif saat ini.
+              <a href="{% url 'programs:programs' %}" class="btn btn-primary ">Daftar Program</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="d-lg-flex flex-row gap-5">
+          <div class="card col-lg-5 konten-6 mb-4">
+            <div class="card-header p-2">
+              <h5><i class=" fa-solid fa-code me-2"></i> Laporan Perkembangan</h5>
+            </div>
+            <div class="card-body p-3">
+              <div class="text-end me-5">
+              <a class="me-5" href="{% url 'users:laporan_perkembangan' %}" style="font-size:27px;text-decoration:none;">More Info</a>
+              <i class="fa fa-chart-line" style="font-size:120px;opacity:50%"></i>
+              </div>
+            </div>
+             <!-- Riwayat Pembayaran Section -->
+           </div>
+            <div class="card col-lg-5 konten-7 mb-4">
+            <div class="card-header p-2">
+              <h5><i class="fa-solid fa-clock-rotate-left me-2"></i>Riwayat Kegiatan</h5>
+             </div>
+               <div class="card-body p-3">
+                <div class="text-end me-5">
+                <a class="me-5" href="{% url 'users:riwayat_kegiatan' %}" style="font-size:27px;text-decoration:none;">More Info</a>
+               <i class="fa fa-list" style="font-size:120px;opacity:50%"></i>
+               </div>
+              </div>
+            </div>
+          </div>
+      
+     
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/profil.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#program-header').click(function() {
+      $('.program-content').slideToggle("slow"); 
+    });
+  });
+</script>
+<script>
+  function updateGreeting() {
+      const username = "{{user.username}}";
+      const currentHour = new Date().getHours();
+      let greeting = "";
+
+      if (currentHour < 12) {
+          greeting = "Selamat Pagi";
+      } else if (currentHour < 15) {
+          greeting = "Selamat Siang";
+      } else if (currentHour < 18) {
+          greeting = "Selamat Sore";
+      } else {
+          greeting = "Selamat Malam";
+      }
+
+      document.getElementById("greetingMessage").textContent = `${greeting}, ${username}!`;
+      document.getElementById("currentTime").textContent = `Waktu sekarang: ${new Date().toLocaleTimeString()}`;
+  }
+
+  updateGreeting();
+  setInterval(updateGreeting, 1000);
+</script>
+{% endblock %}

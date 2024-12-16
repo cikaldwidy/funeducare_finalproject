@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %} {% block content %}
+<div class="container">
+  <h2>Pembayaran Gagal</h2>
+  <p>
+    Maaf, terjadi kesalahan dalam pembuatan link pembayaran. Silakan coba lagi
+    atau hubungi admin.
+  </p>
+  <a href="{% url 'pendaftaran:pendaftaran' %}" class="btn btn-primary"
+    >Kembali ke Form Pendaftaran</a
+  >
+</div>
+{% endblock %}

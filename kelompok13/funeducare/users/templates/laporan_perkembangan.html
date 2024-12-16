@@ -1,0 +1,77 @@
+{% extends 'base/base_element.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/laporan-style.css' %}" />
+{% endblock %} {% block body_block %}
+<main class="container">
+  <header>
+    <h1 class="header">📋 Laporan Perkembangan Anak</h1>
+  </header>
+
+  <section id="child-selection-card" class="card">
+    <header class="card-header">
+      <svg
+        class="card-header-icon"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+        ></path>
+      </svg>
+      <h2>Daftar Anak Anda</h2>
+    </header>
+
+    <div id="child-selection" class="child-selection">
+      {% if children %}
+      <div class="column row">
+        {% for child in children %}
+        <div class="col-md-4 mb-3 mt-4">
+          <div class="card h-100 shadow-lg rounded-5 overflow-hidden">
+            <div class="card-body text-center">
+              <img 
+                        src="{% if child.foto_anak %}{{ child.foto_anak.url }}{% else %}{% static 'images/IMG_6643.png' %}{% endif %}"
+                        class="child-image mb-3 rounded-circle" style="width:100px;height:100px"
+                        alt="Foto {{ child.nama_anak }}"
+                    />
+              <h5 style="font-weight:600;font-size:18px;opacity:90%" class="card-title mb-2">{{ child.nama_anak }}</h5>
+              <a href="{% url 'users:profile_view' %}" style="text-decoration:none;font-size:17px;color:blue;font-weight:400;opacity:90%">Lihat detail profil</a>
+            </div>
+
+            <div class="development-details">
+              {% if child.developments.count > 0 %}
+              <a
+                href="{% url 'users:download_pdf' child.id %}"
+                class="btn btn-primary "
+              >
+                📄 Download Laporan PDF
+              </a>
+              {% else %}
+              <p class="text-muted">Belum ada laporan perkembangan</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-center text-muted">
+        Anda belum memiliki anak yang terdaftar.
+      </p>
+      {% endif %}
+    </div>
+  </section>
+  <div class="mt-3 text-center p-2">
+    <a
+      class="btn btn-primary p-2 shadow-lg"
+      href="{% url 'users:profile-base' %}"
+      >Kembali</a
+    >
+  </div>
+</main>
+
+<script src="{% static 'js/laporan.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'base/base_all.html' %}
+{% load static %}
+{% load custom_filters %} {% load static %} 
+{% block head_title %} funeducare-fasilitas{% endblock head_title %}{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/fasilitases-style.css' %}" />
+{% endblock %} {% block body_block %}
+
+<section class="container">
+    <div class="col-12 p-5">
+        <div class="head-content d-flex flex-row col-8">
+            <a href="{% url 'home:home' %}">
+                <h5>HOME</h5>
+            </a>
+            <span class="me-3 ms-3"> > </span>
+            <h4>FASILITAS</h4>
+        </div>
+        <div class="title-content col-12 mt-3 mb-3 d-flex flex-column">
+            <h1>Fasilitas di FunEduCare</h1>
+            <p>FunEduCare dilengkapi dengan fasilitas-fasilitas yang
+                membuat kegiatan belajar-mengajar menjadi lancar,
+                aman, dan damai.</p>
+        </div>
+        <div class="row">
+            {% for item in all %}
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card" style="width: 100%;">
+                    <img class="card-img-top" src="{{ item.foto.url }}" alt="{{ item.judul }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.judul }}</h5>
+                        <p class="card-text">{{ item.deskripsi|truncatechars:150 }}</p>
+                        <a href="{% url 'home:detail' item.id %}">Selengkapnya ></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}

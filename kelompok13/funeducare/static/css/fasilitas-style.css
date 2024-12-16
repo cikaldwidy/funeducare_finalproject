@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  text-decoration: none;
+  list-style: none;
+}
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: #fffefa;
+
+  --big-font: 3rem;
+  --title-font: 40px;
+  --p-font: 1rem;
+}
+body {
+  background: var(--bg-color);
+}
+
+.head-content a {
+  text-decoration: none;
+}
+.head-content h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-color1);
+  opacity: 95%;
+}
+.head-content h5 {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-color1);
+  opacity: 90%;
+}
+/* c1 */
+.title-content h1 {
+  font-size: 40px;
+  font-weight: 600;
+  background: linear-gradient(to right, #011f46, var(--main-color));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title-content h5 {
+  color: var(--text-color1);
+  font-weight: 600;
+}
+.title-content p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-color1);
+  text-align: justify;
+  letter-spacing: 0.3px;
+}
+/* c2 */
+.list-content h3 {
+  color: var(--text-color1);
+  font-size: 23px;
+  font-weight: 600;
+  opacity: 95%;
+}
+.list-content h5 {
+  color: var(--text-color1);
+  font-size: 18px;
+  font-weight: 600;
+}
+.list-content p {
+  font-size: 14px;
+  text-align: justify;
+  color: var(--text-color1);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+.list-content a {
+  text-decoration: none;
+  font-size: 14px;
+  background: linear-gradient(to right, #011f46, var(--main-color));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+/* footer */
+
+.list1,
+.footer-links,
+.list2 {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list1 li,
+.footer-links li,
+.list2 li {
+  margin-bottom: 10px;
+}
+
+/* Gaya untuk tautan di list1 */
+.list1 a {
+  color: var(--text-color2);
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.list1 a:hover {
+  text-decoration: underline;
+}
+
+/* Gaya untuk tautan di footer-links */
+.footer-links a {
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Gaya untuk tautan di list2 */
+.list2 a {
+  color: var(--text-color2);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+}
+
+.list2 a:hover {
+  text-decoration: underline; /* Garis bawah saat hover */
+}
+
+/* Gaya untuk judul di footer */
+.footer h4 {
+  color: var(--text-color2);
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* Gaya untuk footer */
+.footer {
+  background: linear-gradient(to right, #011f46, var(--main-color));
+  opacity: 0.9;
+}
+
+/* Gaya untuk elemen tambahan */
+.list4,
+.follow,
+.copyright {
+  color: var(--text-color2);
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+{% extends 'base/base_element.html' %} {% load static %} 
+{% block head_title %} funeducare-signup{% endblock head_title %}{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signup-style.css' %}" />
+{% endblock %} {% block body_block %}
+<main>
+  <section>
+    <div class="home">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        class="bi bi-arrow-left"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+        />
+      </svg>
+      <a href="{% url 'users:login' %}" class="link">Back to Log-In</a>
+    </div>
+      {% if messages %}
+      <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true" >
+        <div class="modal-dialog">
+          <div class="modal-content" style="max-width:500px;height:auto;">
+            <div class="modal-header">
+              <h5 class="modal-title">Notifikasi</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body text-center align-items-center">
+              {% for message in messages %}
+                {% if "success" in message.tags %} 
+                <!-- Success Message -->
+                 <img
+                  src="{% static 'images/verified.png' %}"
+                  alt="Success"
+                  style="width: 200px; height: auto;"
+                />
+                <div class="text" role="alert">
+                  <h5>Registrasi Berhasil !</h5> 
+                  <p>{{ message }}</p>
+                  <a href="{% url 'users:login' %}" class="btn btn-warning">Login Akun</a>
+                </div>
+              
+                {% elif "error" in message.tags %} 
+                <!-- Error Message -->
+                <img
+                  src="{% static 'images/logvailed.png' %}"
+                  alt="Error"
+                  style="width: 250px; height: auto;"
+                />
+                <div class="text" role="alert">
+                  <h5>Registrasi Gagal !</h5> 
+                  <p>{{ message }}</p>
+                  </div>
+             {% endif %} 
+              {% endfor %} 
+          </div>
+           </div>
+        </div>
+      </div>
+    {% endif %}  
+    <div class="container mt-2">    
+    <div class="content mb-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="picture">
+              <img
+                src="{% static 'images/img.png' %}"
+                class="img-fluid img"
+                alt="logo"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 ms-auto">
+            <div class="form">
+              <form
+                action="{% url 'users:signup' %}"
+                id="signinForm"
+                method="post"           
+              >
+                {% csrf_token %}
+                <div class="row title">
+                  <h1
+                    class="text-center mt-2 animate__animated animate__fadeInUp"
+                  >
+                    Form Pendaftaran
+                  </h1>             
+                  <p class="text-center mb-4">
+                    Buat akun anda untuk mengisi form di login FunEduCare
+                  </p>
+
+                  <div class="col-md-6 label">
+                    <div class="mb-3">
+                      <label
+                        for="id_first_name"
+                        class="form-label col-form-label"
+                        >Nama Depan</label
+                      >
+                      {{ form.first_name }}
+                </div>
+                    <div class="mb-3">
+                      <label for="id_username" class="form-label col-form-label"
+                        >Username</label
+                      >
+                  {{ form.username }}
+                </div>
+                    <div class="mb-3 position-relative">
+                      <label
+                        for="id_password1"
+                        class="form-label col-form-label"
+                        >Password</label
+                      >
+                      <div class="input-group position-relative">
+                        <div class="col-12">
+                          {{ form.password1 }}
+                          <span
+                            id="toggle-password1"
+                            class="bi bi-eye-slash position-absolute icon"
+                            style="
+                              top: 35%;
+                              right: 10px;
+                              transform: translateY(-50%);
+                              cursor: pointer;
+                              font-size: 23px;
+                            "
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 label">
+                    <div class="mb-3">
+                      <label
+                        for="id_last_name"
+                        class="form-label col-form-label"
+                        >Nama Belakang</label
+                      >
+                      {{ form.last_name }}
+                    </div>
+                    <div class="mb-3">
+                      <label for="id_email" class="form-label col-form-label"
+                        >Email</label
+                      >
+                  {{ form.email }}
+                </div>
+
+                    <div class="mb-3 position-relative">
+                      <label
+                        for="id_password2"
+                        class="form-label col-form-label"
+                    >Verifikasi Password</label
+                  >
+                      <div class="input-group position-relative">
+                        <div class="col-12">
+                  {{ form.password2 }}
+                          <span
+                            id="toggle-password2"
+                            class="bi bi-eye-slash position-absolute icon"
+                            style="
+                              top: 35%;
+                              right: 10px;
+                              transform: translateY(-50%);
+                              cursor: pointer;
+                              font-size: 23px;
+                            "
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="submit mt-2 mb-3">
+                  <button type="submit" class="btn">Sign Up</button>
+                </div>
+                <p class="login text-center">
+                  <a href="{% url 'home:home' %} " style="font-size: 20px"
+                    ><i class="fa-solid fa-house me-3"></i
+                  ></a>
+                  Sudah Punya akun?<a href="{% url 'users:login' %}"> Login</a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="{% static 'js/sign-up.js' %}"></script>
+{% endblock %}

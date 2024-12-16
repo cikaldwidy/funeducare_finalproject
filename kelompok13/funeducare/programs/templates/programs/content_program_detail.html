@@ -1,0 +1,1080 @@
+{% load static %}
+{% load humanize %}
+<div id="infantcare">
+  <div class="container overflow-hidden text-center">
+    <div class="row gx-5">
+      {% for program_name, program_data in programs_details.items %}
+      {% if program_name == "Infant Care" %}
+      <h3 class="fw-bold fs-1">{{ program_data.program.name }}</h3>
+      <p class="text-muted fw-medium">{{ program_data.program.age_range }}</p>
+      <p class="pb-4 fs-6 fw-light">{{ program_data.program.description }}</p>
+      <div class="col-md-6">
+        <div
+          id="carouselExampleSlidesOnly"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="{{ program_data.program.image.url }}"
+                class="d-block w-100"
+                alt="baby picture"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="p-3 mb-2 bg-info-subtle text-info-emphasis">
+          <div>
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <h4 class="fw-medium mb-1">Rasio Pengasuh</h4>
+            <p class="small text-muted mb-0">
+              1:3 (1 pengasuh untuk 3 bayi)
+            </p>
+          </div>
+        </div>
+      </div>      
+      <!-- Activities -->
+      <div class="col-md-6">
+        <h4 class="fw-normal pb-3">Aktivitas Harian Infant Care</h4>
+        {% if program_data.activities %}
+        <ul class="list-group list-group-flush pb-5 fw-medium fst-italic">
+          {% for activity in program_data.activities %}
+          <li class="list-group-item text-start fw-medium">
+            <i class="{{ activity.icon_class }}"></i>
+            {{ activity.name }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>Belum adanya Aktivitas </p>
+        {% endif %}
+        <div id="moreInfoInfantCare" class="mt-1" style="display: none">
+          <div class="row">
+            <div class="col-md-6">
+              <h6>Jadwal</h6>
+              <p class="fw-bold">Senin - Jumat, 07.00 - 18.00</p>
+            </div>
+            <div class="col-md-6">
+              <h6>Biaya</h6>
+              <p class="fw-bold" style="color: red">
+                Mulai dari Rp 300.000/hari
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-block d-flex justify-content-center align-items-center w-100"
+            data-bs-toggle="modal"
+            data-bs-target="#infoModalInfantCare"
+          >
+            Lihat Detail Lengkap
+          </button>
+        </div>
+        <div class="button-group d-flex">
+          <button
+            class="btn btn-block btn-3 w-100"
+            id="toggleInfoInfantCare"
+          >
+            Informasi Lebih Lanjut
+          </button>
+        </div>
+        <div class="button-group mb-5 d-flex">
+          {% if  user.is_authenticated %}
+          <a href="{% url 'pendaftaran:pendaftaran' %}" class="w-100 text-decoration-none">
+          {% endif %}  
+          {% if  not user.is_authenticated %}
+          <a href="{% url 'users:login' %}" class="w-100 text-decoration-none">
+          {% endif %}  
+            <button
+              class="btn btn-block btn-2 mt-3 w-100"
+              style="margin-top: auto"
+            >
+              Booking Program
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Infant Care -->
+<div
+class="modal fade"
+id="infoModalInfantCare"
+tabindex="-1"
+aria-labelledby="infoModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title fw-bold me-2" id="infoModalLabel">
+        Informasi Lengkap - Infant Care Program
+      </h3>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <div class="row mt-2">
+        <div class="col-md-6">
+          <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h4 class="fw-medium">
+              <i class="bi bi-cash me-2"></i>Biaya
+            </h4>
+            <p class="mt-2">
+              Kami menawarkan beberapa pilihan paket biaya yang fleksibel,
+              disesuaikan dengan kebutuhan dan durasi pendaftaran.
+            </p>
+            {% if program_data.fees %}
+            <ul class="list-unstyled mt-3">
+              {% for fee in program_data.fees %}
+              <li class="mb-3 p-1">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-semibold">{{ fee.type_program }}</span>
+                  <span class="fw-bold" style="color: red">
+                    Rp {{ fee.amount|floatformat:0|intcomma }}
+                    {% if fee.type_program == "Drop In" %}/hari {% else %}/bulan{% endif %}
+                  </span>
+                </div>
+                <p class="mt-2 mb-0">{{ fee.description }}</p>
+              </li>              
+              {% endfor %}
+              <hr />
+            </ul>
+            {% else %}
+            <p>Belum adanya biaya yang ditampilkan</p>
+            {% endif %}
+            <h4 class="fw-medium mt-3">
+              <i class="bi bi-clock-fill me-2"></i>Jadwal
+            </h4>
+            {% if program_data.schedules %}
+            <p class="mt-2">
+              Program Infant Care kami tersedia setiap hari Senin hingga
+              Jumat, dari pukul 07.00 hingga 18.00.
+            </p>
+            <ul class="list-unstyled mt-3">
+              {% for schedule in program_data.schedules %}
+              <li
+                class="d-flex justify-content-between align-items-center mb-3 p-1"
+              >
+                <span class="fw-semibold">Hari Operasional</span>
+                <span class="fw-bold">{{ schedule.days }}</span>
+              </li>
+              <hr />
+              <li
+                class="d-flex justify-content-between align-items-center p-1"
+              >
+                <span class="fw-semibold">Jam Layanan</span>
+                <span class="fw-bold">{{ schedule.time }}</span>
+                {% endfor %}
+              </li>
+              {% else %}
+              <p>Belum adanya jadwal</p>
+              {% endif %}
+            </ul>
+            <div class="p-3 mb-2 bg-warning text-dark mt-3">
+              <h4>
+                <i class="bi bi-exclamation-square-fill me-2"></i
+                >Informasi
+              </h4>
+              <p class="fw-bold">
+                Kami menghormati hari libur nasional dan hari raya,
+                sehingga layanan kami akan tutup. Untuk informasi lebih
+                lanjut, hubungi kami.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow p-3 bg-body-tertiary rounded">
+            <h4 class="fw-medium">
+              <i class="bi bi-shield-shaded me-2"></i>Fasilitas
+            </h4>
+            <p class="mt-2">
+              Kami memahami bahwa setiap bayi membutuhkan perhatian khusus dan lingkungan yang aman serta nyaman untuk mendukung tumbuh kembangnya. Oleh karena itu, program Infant Care kami dilengkapi dengan berbagai fasilitas unggulan, antara lain:
+            </p>
+            {% if program_data.facilities %}
+            <ul class="list-unstyled mt-3">
+              <div class="p-3 mb-2 bg-body-secondary">
+                {% for facility in program_data.facilities %}
+                <li class="p-2 fw-bold">
+                  <i class="me-2 {{ facility.icon_class }}"></i> {{ facility.name }} 
+                  <p class="text-muted fw-light">{{ facility.description }}</p>
+                </li>
+                {% endfor %}
+              </div>
+            </ul>
+            {% else %}
+            <p>Belum adanya fasilitas</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      <div class="mt-3">
+        <h4 class="fw-medium">
+          <i class="fa-solid fa-chalkboard-user me-2"></i>Profil Pengajar
+        </h4>
+        {% if program_data.teachers %}
+        <div class="row mt-3">
+          {% for teacher in program_data.teachers %}
+          <div class="col-md-4 text-center mb-5">
+            <div class="card shadow p-3 bg-body-tertiary rounded">
+              {% if teacher.profile_picture %}
+              <img
+                src="{{ teacher.profile_picture.url }}"
+                class="img-fluid mb-2 border mx-auto d-block"
+                alt="teacher"
+                style="width: auto"
+              />
+              {% endif %}
+              <div class="card-body">
+                <h5 class="fw-bold">{{ teacher.name }}</h5>
+                <p class="fw-medium">{{ teacher.experience }}</p>
+                <hr>
+                <p class="fw-normal fst-italic fs-6">{{ teacher.bio }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p>Belum ada pengajar yang ditampilkan</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="modal-footer button-group d-flex justify-content-between">
+      <button type="button" class="btn btn-3" data-bs-dismiss="modal">
+        Tutup
+      </button>
+      <a href="https://wa.me/6281234567890?text=Halo%20👶%20Saya%20tertarik%20dengan%20program%20Infant%20Care%20yang%20ditawarkan.%20Bisakah%20saya%20mendapatkan%20informasinya%20lebih%20lanjut?"
+        class="btn btn-2" 
+        target="_blank" 
+        rel="noopener noreferrer">
+        <i class="bi bi-whatsapp"></i> Hubungi Kami
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+<!-- Program toodler -->
+<div id="toddler">
+  <div class="container overflow-hidden text-center">
+    <div class="row gx-5">
+      {% for program_name, program_data in programs_details.items %}
+      {% if program_name == "Toddler" %}
+      <h3 class="fw-bold fs-1">{{ program_data.program.name }}</h3>
+      <p class="text-muted fw-medium">{{ program_data.program.age_range }}</p>
+      <p class="pb-4 fs-6 fw-light"> {{ program_data.program.description }} </p>
+      <div class="col-md-6">
+        <div
+          id="carouselExampleSlidesOnly"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="{{ program_data.program.image.url }}"
+                class="d-block w-100"
+                alt="toddler picture"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="p-3 mb-2 bg-info-subtle text-info-emphasis">
+          <div>
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <h4 class="fw-medium mb-1">Rasio Pengasuh</h4>
+            <p class="small text-muted mb-0">
+              2:5 (2 pengasuh untuk 5 toddler)
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Activities -->
+      <div class="col-md-6">
+        <h4 class="fw-normal pb-3">Aktivitas Harian Toddler</h4>
+        {% if program_data.activities %}
+        <ul class="list-group list-group-flush pb-5 fw-medium fst-italic">
+          {% for activity in program_data.activities %}
+          <li class="list-group-item text-start">
+            <i class="{{ activity.icon_class }}"></i>
+            {{ activity.name }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>Belum adanya aktivitas</p>
+        {% endif %}
+        <div
+          id="moreInfoToddlerProgram"
+          class="mt-1"
+          style="display: none"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <h6>Jadwal</h6>
+              <p class="fw-bold">Senin - Jumat, 07.00 - 18.00</p>
+            </div>
+            <div class="col-md-6">
+              <h6>Biaya</h6>
+              <p class="fw-bold" style="color: red">
+                Mulai dari Rp 250.000/hari
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-block d-flex justify-content-center align-items-center w-100"
+            data-bs-toggle="modal"
+            data-bs-target="#infoModalToddlerProgram"
+          >
+            Lihat Detail Lengkap
+          </button>
+        </div>
+        <div class="button-group d-flex">
+          <button
+            class="btn btn-block btn-3 mt-1 w-100"
+            id="toggleInfoToddlerProgram"
+          >
+            Informasi Lebih Lanjut
+          </button>
+        </div>
+        <div class="button-group mb-5 d-flex">
+          {% if  user.is_authenticated %}
+          <a href="{% url 'pendaftaran:pendaftaran' %}" class="w-100 text-decoration-none">
+          {% endif %}  
+          {% if  not user.is_authenticated %}
+          <a href="{% url 'users:login' %}" class="w-100 text-decoration-none">
+          {% endif %}  
+          <button
+            class="btn btn-block btn-2 mt-3 w-100"
+            style="margin-top: auto"
+          >
+            Booking Program
+          </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Toddler Program -->
+<div
+class="modal fade"
+id="infoModalToddlerProgram"
+tabindex="-1"
+aria-labelledby="infoModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="infoModalLabel">
+        Informasi Lengkap - Toddler Program
+      </h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <div class="row mt-2">
+        <div class="col-md-6">
+          <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h4 class="fw-medium">
+              <i class="bi bi-cash me-2"></i>Biaya
+            </h4>
+            <p class="mt-2">
+              Kami menawarkan beberapa pilihan paket biaya yang fleksibel,
+              disesuaikan dengan kebutuhan dan durasi pendaftaran.
+            </p>
+            {% if program_data.fees %}
+            <ul class="list-unstyled mt-3">
+              {% for fee in program_data.fees %}
+              <li class="mb-3 p-1">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-semibold">{{ fee.type_program }}</span>
+                  <span class="fw-bold" style="color: red">
+                    Rp {{ fee.amount|floatformat:0|intcomma }}
+                    {% if fee.type_program == "Drop In" %}/hari {% else %}/bulan{% endif %}
+                  </span>
+                </div>
+                <p class="mt-2 mb-0">{{ fee.description }}</p>
+              </li>              
+              {% endfor %}
+              <hr />
+            </ul>
+            {% else %}
+            <p>Belum adanya biaya yang di tampilkan</p>
+            {% endif %}
+            <h4 class="fw-medium mt-3">
+              <i class="bi bi-clock-fill me-2"></i>Jadwal
+            </h4>
+            {% if program_data.schedules %}
+            <p class="mt-2">
+              Program Toddler kami tersedia setiap hari Senin hingga
+              Jumat, dari pukul 07.00 hingga 18.00.
+            </p>
+            <ul class="list-unstyled mt-3">
+              {% for schedule in program_data.schedules %}
+              <li
+                class="d-flex justify-content-between align-items-center mb-3 p-1"
+              >
+                <span class="fw-semibold">Hari Operasional</span>
+                <span class="fw-bold">{{ schedule.days }}</span>
+              </li>
+              <hr />
+              <li
+                class="d-flex justify-content-between align-items-center p-1"
+              >
+                <span class="fw-semibold">Jam Layanan</span>
+                <span class="fw-bold">{{ schedule.time }}</span>
+                {% endfor %}
+              </li>
+              {% else %}
+              <p>Belum adanya jadwal</p>
+              {% endif %}
+            </ul>
+            <div class="p-3 mb-2 bg-warning text-dark mt-3">
+              <h4>
+                <i class="bi bi-exclamation-square-fill me-2"></i
+                >Informasi
+              </h4>
+              <p class="fw-bold">
+                Kami menghormati hari libur nasional dan hari raya,
+                sehingga layanan kami akan tutup. Untuk informasi lebih
+                lanjut, hubungi kami.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow p-3 bg-body-tertiary rounded">
+            <h4 class="fw-medium">
+              <i class="bi bi-shield-shaded me-2"></i>Fasilitas
+            </h4>
+            <p class="mt-2">
+              Kami memahami bahwa anak usia 1–2 tahun membutuhkan perhatian khusus serta lingkungan yang aman dan stimulatif untuk mendukung tumbuh kembangnya. Oleh karena itu, program Toddler kami dilengkapi dengan berbagai fasilitas unggulan, antara lain:
+            </p>
+            {% if program_data.facilities %}
+            <ul class="list-unstyled mt-3">
+              <div class="p-3 mb-2 bg-body-secondary">
+                {% for facility in program_data.facilities %}
+                <li class="p-2 fw-bold">
+                  <i class="me-2 {{ facility.icon_class }}"></i> {{ facility.name }} 
+                  <p class="text-muted fw-light">{{ facility.description }}</p>
+                </li>
+                {% endfor %}
+              </div>
+            </ul>
+            {% else %}
+            <p>Belum adanya fasilitas</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="mt-3">
+        <h4 class="fw-medium">
+          <i class="fa-solid fa-chalkboard-user me-2"></i>Profil Pengajar
+        </h4>
+        {% if program_data.teachers %}
+        <div class="row mt-3">
+          {% for teacher in program_data.teachers %}
+          <div class="col-md-4 text-center mb-5">
+            <div class="card shadow p-3 bg-body-tertiary rounded">
+              {% if teacher.profile_picture %}
+              <img
+                src="{{ teacher.profile_picture.url }}"
+                class="img-fluid mb-2 border mx-auto d-block"
+                alt="teacher"
+                style="width: auto;"
+              />
+              {% endif %}
+              <div class="card-body">
+                <h5 class="fw-bold">{{ teacher.name }}</h5>
+                <p class="fw-medium">{{ teacher.experience }}</p>
+                <hr>
+                <p class="fw-normal fst-italic fs-6">{{ teacher.bio }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p>Belum ada pengajar yang ditampilkan</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="modal-footer button-group d-flex justify-content-between">
+      <button type="button" class="btn btn-3" data-bs-dismiss="modal">
+        Tutup
+      </button>
+      <a href="https://wa.me/6281234567890?text=Halo%20👧%20Saya%20tertarik%20dengan%20program%20Toddler.%20Mohon%20informasi%20jadwal%20dan%20kegiatannya%20lebih%20lanjut.%20Terima%20kasih!"
+        class="btn btn-2" 
+        target="_blank" 
+        rel="noopener noreferrer">
+        <i class="bi bi-whatsapp"></i> Hubungi Kami
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+
+<!-- Program Preschool -->
+<div id="preschool">
+  <div class="container overflow-hidden text-center">
+    <div class="row gx-5">
+      {% for program_name, program_data in programs_details.items %}
+      {% if program_name == "Pre School" %}
+      <h3 class="fw-bold fs-1">{{ program_data.program.name }}</h3>
+      <p class="text-muted fw-medium">{{ program_data.program.age_range }}</p>
+      <p class="pb-4 fs-6 fw-light"> {{ program_data.program.description }} </p>
+      <div class="col-md-6">
+        <div
+          id="carouselExampleSlidesOnly"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="{{ program_data.program.image.url }}"
+                class="d-block w-100"
+                alt="preschool picture"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="p-3 mb-2 bg-info-subtle text-info-emphasis">
+          <div>
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <h4 class="fw-medium mb-1">Rasio Pengasuh</h4>
+            <p class="small text-muted mb-0">
+              2:7 (2 pengasuh untuk 7 anak)
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Activities -->
+      <div class="col-md-6">
+        <h4 class="fw-normal pb-3">Aktivitas Harian Pre School</h4>
+        {% if program_data.activities %}
+        <ul class="list-group list-group-flush pb-5 fw-medium fst-italic">
+          {% for activity in program_data.activities %}
+          <li class="list-group-item text-start">
+            <i class="{{ activity.icon_class }}"></i>
+            {{ activity.name }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>Belum adanya aktivitas</p>
+        {% endif %}
+        <div
+          id="moreInfoPre-SchoolProgram"
+          class="mt-1"
+          style="display: none"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <h6>Jadwal</h6>
+              <p class="fw-bold">Senin - Jumat, 07.00 - 18.00</p>
+            </div>
+            <div class="col-md-6">
+              <h6>Biaya</h6>
+              <p class="fw-bold" style="color: red">
+                Mulai dari Rp 200.000/hari
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-block d-flex justify-content-center align-items-center w-100"
+            data-bs-toggle="modal"
+            data-bs-target="#infoModalPre-SchoolProgram"
+          >
+            Lihat Detail Lengkap
+          </button>
+        </div>
+        <div class="button-group d-flex">
+          <button
+            class="btn btn-block btn-3 mt-1 w-100"
+            id="toggleInfoPre-SchoolProgram"
+          >
+            Informasi Lebih Lanjut
+          </button>
+        </div>
+        <div class="button-group mb-5 d-flex">
+          {% if  user.is_authenticated %}
+          <a href="{% url 'pendaftaran:pendaftaran' %}" class="w-100 text-decoration-none">
+          {% endif %}  
+          {% if  not user.is_authenticated %}
+          <a href="{% url 'users:login' %}" class="w-100 text-decoration-none">
+          {% endif %}  
+          <button
+            class="btn btn-block btn-2 mt-3 w-100"
+            style="margin-top: auto"
+          >
+            Booking Program
+          </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Preschool Program -->
+<div
+class="modal fade"
+id="infoModalPre-SchoolProgram"
+tabindex="-1"
+aria-labelledby="infoModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="infoModalLabel">
+        Informasi Lengkap - Pre School Program
+      </h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+        <div class="modal-body">
+      <div class="row mt-2">
+        <div class="col-md-6">
+          <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h4 class="fw-medium">
+              <i class="bi bi-cash me-2"></i>Biaya
+            </h4>
+            <p class="mt-2">
+              Kami menawarkan beberapa pilihan paket biaya yang fleksibel,
+              disesuaikan dengan kebutuhan dan durasi pendaftaran.
+            </p>
+            {% if program_data.fees %}
+            <ul class="list-unstyled mt-3">
+              {% for fee in program_data.fees %}
+              <li class="mb-3 p-1">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-semibold">{{ fee.type_program }}</span>
+                  <span class="fw-bold" style="color: red">
+                    Rp {{ fee.amount|floatformat:0|intcomma }}
+                    {% if fee.type_program == "Drop In" %}/hari {% else %}/bulan{% endif %}
+                  </span>
+                </div>
+                <p class="mt-2 mb-0">{{ fee.description }}</p>
+              </li>              
+              {% endfor %}
+              <hr />
+            </ul>
+            {% else %}
+            <p>Belum adanya biaya yang ditampilkan</p>
+            {% endif %}
+            <h4 class="fw-medium mt-3">
+              <i class="bi bi-clock-fill me-2"></i>Jadwal
+            </h4>
+            {% if program_data.schedules %}
+            <p class="mt-2">
+              Program Infant Care kami tersedia setiap hari Senin hingga
+              Jumat, dari pukul 07.00 hingga 18.00.
+            </p>
+            <ul class="list-unstyled mt-3">
+              {% for schedule in program_data.schedules %}
+              <li
+                class="d-flex justify-content-between align-items-center mb-3 p-1"
+              >
+                <span class="fw-semibold">Hari Operasional</span>
+                <span class="fw-bold">{{ schedule.days }}</span>
+              </li>
+              <hr />
+              <li
+                class="d-flex justify-content-between align-items-center p-1"
+              >
+                <span class="fw-semibold">Jam Layanan</span>
+                <span class="fw-bold">{{ schedule.time }}</span>
+                {% endfor %}
+              </li>
+              {% else %}
+              <p>Belum adanya jadwal</p>
+              {% endif %}
+            </ul>
+            <div class="p-3 mb-2 bg-warning text-dark mt-3">
+              <h4>
+                <i class="bi bi-exclamation-square-fill me-2"></i
+                >Informasi
+              </h4>
+              <p class="fw-bold">
+                Kami menghormati hari libur nasional dan hari raya,
+                sehingga layanan kami akan tutup. Untuk informasi lebih
+                lanjut, hubungi kami.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow p-3 bg-body-tertiary rounded">
+            <h4 class="fw-medium">
+              <i class="bi bi-shield-shaded me-2"></i>Fasilitas
+            </h4>
+            <p class="mt-2">
+              Kami memahami bahwa anak usia 3-4 tahun berada pada tahap penting dalam perkembangan kognitif, sosial, dan emosional. Oleh karena itu, program Pre-School kami dirancang dengan berbagai fasilitas unggulan untuk mendukung pembelajaran dan tumbuh kembang anak, antara lain:
+            </p>
+            {% if program_data.facilities %}
+            <ul class="list-unstyled mt-3">
+              <div class="p-3 mb-2 bg-body-secondary">
+                {% for facility in program_data.facilities %}
+                <li class="p-2 fw-bold">
+                  <i class="me-2 {{ facility.icon_class }}"></i> {{ facility.name }} 
+                  <p class="text-muted fw-light">{{ facility.description }}</p>
+                </li>
+                {% endfor %}
+              </div>
+            </ul>
+            {% else %}
+            <p>Belum adanya fasilitas</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      <div class="mt-3">
+        <h4 class="fw-medium">
+          <i class="fa-solid fa-chalkboard-user me-2"></i>Profil Pengajar
+        </h4>
+        {% if program_data.teachers %}
+        <div class="row mt-3">
+          {% for teacher in program_data.teachers %}
+          <div class="col-md-4 text-center mb-5">
+            <div class="card shadow p-3 bg-body-tertiary rounded">
+              {% if teacher.profile_picture %}
+              <img
+                src="{{ teacher.profile_picture.url }}"
+                class="img-fluid mb-2 border mx-auto d-block"
+                alt="teacher"
+                style="width: auto"
+              />
+              {% endif %}
+              <div class="card-body">
+                <h5 class="fw-bold">{{ teacher.name }}</h5>
+                <p class="fw-medium">{{ teacher.experience }}</p>
+                <hr>
+                <p class="fw-normal fst-italic fs-6">{{ teacher.bio }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p>Belum ada pengajar yang ditampilkan</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="modal-footer button-group d-flex justify-content-between">
+      <button type="button" class="btn btn-3" data-bs-dismiss="modal">
+        Tutup
+      </button>
+      <a href="https://wa.me/6281234567890?text=Halo%20🎒%20Saya%20ingin%20bertanya%20tentang%20program%20Pre-School.%20Bisakah%20saya%20mendapatkan%20informasi%20lengkap%20terkait%20kegiatan%20dan%20biayanya?"  
+        class="btn btn-2" 
+        target="_blank" 
+        rel="noopener noreferrer">
+        <i class="bi bi-whatsapp"></i> Hubungi Kami
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+<!-- Program pre kindergarten -->
+<div id="prekindergarten">
+  <div class="container overflow-hidden text-center">
+    <div class="row gx-5">
+      {% for program_name, program_data in programs_details.items %}
+      {% if program_name == "Pre Kindergarten" %}
+      <h3 class="fw-bold fs-1">{{ program_data.program.name }}</h3>
+      <p class="text-muted fw-medium">{{ program_data.program.age_range }}</p>
+      <p class="pb-4 fs-6 fw-light"> {{ program_data.program.description }} </p>
+      <div class="col-md-6">
+        <div
+          id="carouselExampleSlidesOnly"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="{{ program_data.program.image.url }}"
+                class="d-block w-100"
+                alt="prekindergarten picture"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="p-3 mb-2 bg-info-subtle text-info-emphasis">
+          <div>
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <h4 class="fw-medium mb-1">Rasio Pengasuh</h4>
+            <p class="small text-muted mb-0">
+              3:10 (3 pengasuh untuk 10 anak)
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Activities -->
+      <div class="col-md-6">
+        <h4 class="fw-normal pb-3">Aktivitas Harian Pre Kindergarten</h4>
+        {% if program_data.activities %}
+        <ul class="list-group list-group-flush pb-4 fw-medium fst-italic">
+          {% for activity in program_data.activities %}
+          <li class="list-group-item text-start">
+            <i class="{{ activity.icon_class }}"></i>
+            {{ activity.name }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>Belum adanya aktivitas</p>
+        {% endif %}
+        <div
+          id="moreInfoPre-KindergartenProgram"
+          class="mt-1"
+          style="display: none"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <h6>Jadwal</h6>
+              <p class="fw-bold">Senin - Jumat, 07.00 - 18.00</p>
+            </div>
+            <div class="col-md-6">
+              <h6>Biaya</h6>
+              <p class="fw-bold" style="color: red">
+                Mulai dari Rp 150.000/hari
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-block d-flex justify-content-center align-items-center w-100"
+            data-bs-toggle="modal"
+            data-bs-target="#infoModalPre-KindergartenProgram"
+          >
+            Lihat Detail Lengkap
+          </button>
+        </div>
+        <div class="button-group d-flex">
+          <button
+            class="btn btn-block btn-3 mt-1 w-100"
+            id="toggleInfoPre-KindergartenProgram"
+          >
+            Informasi Lebih Lanjut
+          </button>
+        </div>
+        <div class="button-group mb-5 d-flex">
+          {% if  user.is_authenticated %}
+          <a href="{% url 'pendaftaran:pendaftaran' %}" class="w-100 text-decoration-none">
+          {% endif %}  
+          {% if  not user.is_authenticated %}
+          <a href="{% url 'users:login' %}" class="w-100 text-decoration-none">
+          {% endif %}  
+          <button
+            class="btn btn-block btn-2 mt-3 w-100"
+            style="margin-top: auto"
+          >
+          Booking Program
+          </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Pre-Kindergarten Program -->
+<div
+class="modal fade"
+id="infoModalPre-KindergartenProgram"
+tabindex="-1"
+aria-labelledby="infoModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="infoModalLabel">
+        Informasi Lengkap - Pre-Kindergarten Program
+      </h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <div class="row mt-2">
+        <div class="col-md-6">
+          <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h4 class="fw-medium">
+              <i class="bi bi-cash me-2"></i>Biaya
+            </h4>
+            <p class="mt-2">
+              Kami menawarkan beberapa pilihan paket biaya yang fleksibel,
+              disesuaikan dengan kebutuhan dan durasi pendaftaran.
+            </p>
+            {% if program_data.fees %}
+            <ul class="list-unstyled mt-3">
+              {% for fee in program_data.fees %}
+              <li class="mb-3 p-1">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-semibold">{{ fee.type_program }}</span>
+                  <span class="fw-bold" style="color: red">
+                    Rp {{ fee.amount|floatformat:0|intcomma }}
+                    {% if fee.type_program == "Drop In" %}/hari {% else %}/bulan{% endif %}
+                  </span>
+                </div>
+                <p class="mt-2 mb-0">{{ fee.description }}</p>
+              </li>              
+              {% endfor %}
+              <hr />
+            </ul>
+            {% else %}
+            <p>Belum adanya biaya yang ditampilkan</p>
+            {% endif %}
+            <h4 class="fw-medium mt-3">
+              <i class="bi bi-clock-fill me-2"></i>Jadwal
+            </h4>
+            {% if program_data.schedules %}
+            <p class="mt-2">
+              Program Infant Care kami tersedia setiap hari Senin hingga
+              Jumat, dari pukul 07.00 hingga 18.00.
+            </p>
+            <ul class="list-unstyled mt-3">
+              {% for schedule in program_data.schedules %}
+              <li
+                class="d-flex justify-content-between align-items-center mb-3 p-1"
+              >
+                <span class="fw-semibold">Hari Operasional</span>
+                <span class="fw-bold">{{ schedule.days }}</span>
+              </li>
+              <hr />
+              <li
+                class="d-flex justify-content-between align-items-center p-1"
+              >
+                <span class="fw-semibold">Jam Layanan</span>
+                <span class="fw-bold">{{ schedule.time }}</span>
+                {% endfor %}
+              </li>
+              {% else %}
+              <p>Belum adanya jadwal</p>
+              {% endif %}
+            </ul>
+            <div class="p-3 mb-2 bg-warning text-dark mt-3">
+              <h4>
+                <i class="bi bi-exclamation-square-fill me-2"></i
+                >Informasi
+              </h4>
+              <p class="fw-bold">
+                Kami menghormati hari libur nasional dan hari raya,
+                sehingga layanan kami akan tutup. Untuk informasi lebih
+                lanjut, hubungi kami.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow p-3 bg-body-tertiary rounded">
+            <h4 class="fw-medium">
+              <i class="bi bi-shield-shaded me-2"></i>Fasilitas
+            </h4>
+            <p class="mt-2">
+              Kami memahami bahwa setiap bayi membutuhkan perhatian khusus dan lingkungan yang aman serta nyaman untuk mendukung tumbuh kembangnya. Oleh karena itu, program Infant Care kami dilengkapi dengan berbagai fasilitas unggulan, antara lain:
+            </p>
+            {% if program_data.facilities %}
+            <ul class="list-unstyled mt-3">
+              <div class="p-3 mb-2 bg-body-secondary">
+                {% for facility in program_data.facilities %}
+                <li class="p-2 fw-bold">
+                  <i class="me-2 {{ facility.icon_class }}"></i> {{ facility.name }} 
+                  <p class="text-muted fw-light">{{ facility.description }}</p>
+                </li>
+                {% endfor %}
+              </div>
+            </ul>
+            {% else %}
+            <p>Belum adanya fasilitas</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      <div class="mt-3">
+        <h4 class="fw-medium">
+          <i class="fa-solid fa-chalkboard-user me-2"></i>Profil Pengajar
+        </h4>
+        {% if program_data.teachers %}
+        <div class="row mt-3">
+          {% for teacher in program_data.teachers %}
+          <div class="col-md-4 text-center mb-5">
+            <div class="card shadow p-3 bg-body-tertiary rounded">
+              {% if teacher.profile_picture %}
+              <img
+                src="{{ teacher.profile_picture.url }}"
+                class="img-fluid mb-2 border mx-auto d-block"
+                alt="teacher"
+                style="width: auto"
+              />
+              {% endif %}
+              <div class="card-body">
+                <h5 class="fw-bold">{{ teacher.name }}</h5>
+                <p class="fw-medium">{{ teacher.experience }}</p>
+                <hr>
+                <p class="fw-normal fst-italic fs-6">{{ teacher.bio }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p>Belum ada pengajar yang ditampilkan</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="modal-footer button-group d-flex justify-content-between">
+      <button type="button" class="btn btn-3" data-bs-dismiss="modal">
+        Tutup
+      </button>
+      <a href="https://wa.me/6281234567890?text=Halo%20🎨%20Saya%20tertarik%20dengan%20program%20Pre-Kindergarten.%20Bisakah%20Anda%20membantu%20saya%20dengan%20informasi%20lebih%20lanjut%20tentang%20kegiatan%20dan%20fasilitasnya?" 
+        class="btn btn-2" 
+        target="_blank" 
+        rel="noopener noreferrer">
+        <i class="bi bi-whatsapp"></i> Hubungi Kami
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}

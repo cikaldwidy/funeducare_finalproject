@@ -1,0 +1,45 @@
+<!DOCTYPE html> {% extends 'base/base_all.html' %} {% load custom_filters %}
+<!-- Pastikan filter dimuat di sini -->
+{% load static %} {% block head_title %} funeducare-detail fasilitas{% endblock head_title %}{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/fasilitas-style.css' %}" />
+{% endblock %} {% block body_block %}
+<!-- Konten -->
+<section class="container">
+  <div class="p-5">
+    <div class="row">
+      <div class="head-content d-flex flex-row col-8">
+        <a href="{% url 'home:home' %}"><h5>HOME</h5></a>
+        <span class="me-3 ms-3"> > </span>
+        <a href="{% url 'home:fasilitas' %}"
+          ><h5>FASILITAS</h5></a
+        >
+        <span class="me-3 ms-3"> > </span>
+        <h5 style="font-weight:600;">{{ detail.judul }}</h5>
+      </div>
+    </div>
+    <br />
+    <div class="col-12 d-flex flex-column flex-lg-row">
+      <div class="title-content d-flex flex-column col-12 col-lg-8">
+        <h4 class="mb-3">{{ detail.judul }}</h4>
+        <img src="{{ detail.foto.url }}" alt="{{ detail.judul }}" />
+        <h5 class="mt-4 mb-3 ml-2">Fasilitas yang kami tawarkan!</h5>
+        {% for paragraf in detail.deskripsi|split_paragraphs %}
+        <p>{{ paragraf }}</p>
+        {% endfor %}
+      </div>
+      <div class="list-content d-flex flex-column col-12 col-lg-5">
+        <h3 class="p-4">Fasilitas Terkait Lainnya</h3>
+        <div class="pt-0 p-5">
+          {% for item in all %}
+          <div class="col-12 pb-3 mb-4">
+            <h5 class="mb-2">{{ item.judul }}</h5>
+            <p >{{ item.deskripsi|truncatechars:100 }}</p>
+            <a href="{% url 'home:detail' item.id %}">Selengkapnya ></a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

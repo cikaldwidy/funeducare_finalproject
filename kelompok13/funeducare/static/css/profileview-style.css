@@ -1,0 +1,154 @@
+/* Custom Profile Child Form Styles */
+
+/* Container */
+.profile-container {
+  max-width: 800px;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+.form-title {
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Form Section Title */
+.form-section-title {
+  font-size: 20px;
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Form Labels */
+.form-label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Form Inputs */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Textarea */
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* File Input */
+input[type="file"] {
+  display: none;
+}
+
+label[for="id_foto_anak"] {
+  display: inline-block;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+label[for="delete_image"] {
+  cursor: pointer;
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* Image Upload Instructions */
+.image-instruction {
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* Buttons */
+.btn-cancel,
+.btn-submit {
+  width: 140px;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-submit:hover,
+.btn-cancel:hover {
+  opacity: 0.8;
+}
+
+/* Divider */
+.form-divider {
+  border-top: 1px dashed #ddd;
+  margin-top: 30px;
+}
+
+/* Back Link */
+.back-link {
+  font-size: 16px;
+  color: #007bff;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Error Handling */
+.text-danger {
+  color: red;
+  font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 15px;
+  }
+
+  .form-title {
+    font-size: 22px;
+  }
+
+  .form-label {
+    font-size: 13px;
+  }
+
+  .form-section-title {
+    font-size: 18px;
+  }
+
+  .btn-cancel,
+  .btn-submit {
+    width: 100%;
+  }
+}

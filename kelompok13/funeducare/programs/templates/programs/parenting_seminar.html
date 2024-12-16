@@ -1,0 +1,18 @@
+{% load humanize %}
+<tbody>
+  {% for seminar in parenting_seminar %}
+  <tr>
+    <td>{{ seminar.date|date:"d F Y" }}</td>
+    <td>{{ seminar.title }}</td>
+    <td>{{ seminar.speaker }}</td>
+    <td>{{ seminar.price|floatformat:0|intcomma  }}</td>
+    <td>{{ seminar.stock }}</td>
+    <td>
+      <button class="btn btn-{{ seminar.ticket_status|yesno:'primary,warning,danger' }} btn-sm"
+              {% if seminar.ticket_status == 'sold_out' %}disabled{% endif %}>
+          {{ seminar.get_ticket_status_display }}
+      </button>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>

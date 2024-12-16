@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block head_title %} {% endblock head_title %}</title>
+    <link rel="stylesheet" href="{% static 'css/home-stylee.css' %}" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% block extra_css %} {% endblock %}
+    <!-- css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google Fonts CDN -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome CDN -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- navbar -->
+    <header>
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div
+          class="container-fluid me-3 ms-3 rounded-5"
+          style="background-color: #cfcfcf"
+        >
+          <a class="navbar-brand me-auto p-3" href="#">
+            <img
+              src="{% static 'images/logo2.png' %}"
+              alt="logo"
+              width="40px"
+            />
+          </a>
+          <div
+            class="offcanvas offcanvas-end text-center"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+            style="background-color: #cfcfcf"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                <img
+                  src="{% static 'images/logo2.png' %}"
+                  alt="logo"
+                  class="logo-small"
+                />
+              </h5>
+              <button
+                type="button"
+                class="btn-close bg-light"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-center flex-grow-1 pe-4">
+                <li class="nav-item">
+                  <a
+                    class="nav-link mx-lg-3{% if request.resolver_match.url_name == 'home' %} mx-lg-3 active {% endif %}"
+                    aria-current="page"
+                    href="{% url 'home:home' %}"
+                    >HOME</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link mx-lg-3{% if request.resolver_match.url_name == 'aboutus' %} mx-lg-3 active {% endif %}"
+                    href="{% url 'aboutus:aboutus' %}"
+                    >ABOUT US</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link mx-lg-3{% if request.resolver_match.url_name == 'programs' %} mx-lg-3 active {% endif %}"
+                    href="{% url 'programs:programs' %}"
+                    >PROGRAMS</a
+                  >
+                </li>
+
+                <li class="nav-item">
+                  <a
+                    class="nav-link mx-lg-3{% if request.resolver_match.url_name == 'contactus' %} mx-lg-3 active {% endif %}"
+                    href="{% url 'contactus:contactus' %}"
+                    >CONTACT-US</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex align-items-center profile" id="loginForm">
+            {% if user.is_authenticated %}
+            <a href="{% url 'users:profile-base' %}" class="p-2 me-2">
+              {% if form.profile_image.value %}
+              <!-- Gambar yang baru saja di-upload -->
+              <img
+                src="{{ form.profile_image.value.url }}"
+                alt="Profile Image"
+                class="rounded-circle"
+                style="width: 45px; height: 45px"
+              />
+              {% elif request.user.profile_image %}
+              <!-- Gambar profil yang sudah ada -->
+              <img
+                src="{{ request.user.profile_image.url }}"
+                alt="Profile Image"
+                class="rounded-circle"
+                style="width: 45px; height: 45px"
+              />
+
+              {% else %}
+              <!-- Menampilkan gambar default jika belum ada gambar profil -->
+              <img
+                src="{% static 'images/IMG_6643.png' %}"
+                alt="Default Profile Image"
+                class="rounded-circle bg-secondary"
+                style="width: 45px; height: 43px"
+              />
+              {% endif %}
+            </a>
+            {% else %}
+            <a href="{% url 'users:login' %}" class="signup-button p-2 me-2"
+              >Create Your Account</a
+            >
+            {% endif %}
+            <button
+              class="navbar-toggler pe-2"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNavbar"
+              aria-controls="offcanvasNavbar"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    {% comment %} content {% endcomment %}
+    <main>{% block body_block %} {% endblock %}</main>
+    {% comment %} content {% endcomment %}
+    <footer class="container-footer footer">
+      <div class="pt-4 p-5">
+        <div class="row">
+          <div class="col-md-4">
+            <ul class="list1">
+              <li>
+                <a href="{% url 'aboutus:aboutus' %}#siapakami">Tentang Kami</a>
+              </li>
+              <li>
+                <a href="{% url 'programs:programs' %}#service">Layanan Kami</a>
+              </li>
+              <li>
+                <a href="{% url 'programs:programs' %}#upcoming-event"
+                  >Upcoming Events</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'programs:programs' %}#program-lainnya"
+                  >Program Lainnya</a
+                >
+              </li>
+              <li><a href="{% url 'home:home' %}#fasilitas">Fasilitas</a></li>
+              <li><a href="{% url 'aboutus:aboutus' %}#galeri">Galeri</a></li>
+            </ul>
+          </div>
+          <!-- footer column 2 -->
+          <div class="col-md-4">
+            <ul class="list2">
+              <li><a href="{% url 'programs:programs' %}">Pendaftaran</a></li>
+              <li>
+                <a href="{% url 'home:home' %}#testimonialCarousel"
+                  >Testimoni</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'contactus:contactus' %}#faq-list">FAQ</a>
+              </li>
+              <li>
+                <a href="{% url 'contactus:contactus' %}#konsultasi"
+                  >Hubungi Kami</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'pendaftaran:syarat' %}">Syarat & Ketentuan</a>
+              </li>
+              <li>
+                <a href="{% url 'pendaftaran:cara_mendaftar' %}"
+                  >Cara Mendaftar</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h4>Kontak Kami</h4>
+            <ul class="list4">
+              <li class="" style="cursor: pointer">
+                <i class="bi bi-geo-alt me-3"></i>
+                Jl. Mawar, Ruko Silent Hill 2
+              </li>
+              <br />
+              <li style="cursor: pointer">
+                <i class="bi bi-whatsapp me-3"></i>
+                088221319983
+              </li>
+              <br />
+              <li style="cursor: pointer">
+                <a
+                  href="mailto:funeducare.id@gmail.com"
+                  style="text-decoration: none; color: white"
+                >
+                  <i class="bi bi-envelope me-3"></i>
+                  funeducare.id@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- btn up -->
+          {% comment %}
+          <div class="button-group d-flex justify-content-center mb-4">
+            <button id="backToTop" class="btn btn-1">Back to Top</button>
+          </div>
+          {% endcomment %}
+          <!-- footer column 3/social media -->
+          <div class="d-flex justify-content-center mt-5">
+            <div class="col-md-4 text-center">
+              <h5 class="follow">Follow Us</h5>
+              <a
+                href="https://www.facebook.com/ruanggurucom/"
+                class="text-white me-2"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a href="https://x.com/ruangguru/" class="text-white me-2"
+                ><i class="bi bi-twitter"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/ruangguru/"
+                class="text-white me-2"
+                ><i class="bi bi-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/ruangguru-com?referralCookiesId=23cf3dc9-bba5-43d3-ba10-a086684aef0e"
+                class="text-white me-2"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <!-- Footer Bottom -->
+        <div class="copyright text-center mt-4">
+          <p>Copyright &copy; 2024 FunEduCare. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- link js-bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,260 @@
+/* General Reset for Font */
+* {
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: #fffefa;
+
+  --big-font: 3rem;
+  --title-font: 40px;
+  --p-font: 1rem;
+}
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    transform: scale(1.2); /* Zoom in */
+  }
+  100% {
+    transform: scale(1); /* Return to normal size */
+  }
+}
+
+/* Body Styling */
+body {
+  display: grid;
+  place-items: center; /* Centers the content */
+  height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
+/* Home Section */
+.home {
+  display: flex;
+  place-items: start; /* Align to left */
+  justify-self: start; /* Position at the left of the grid */
+  gap: 10px;
+  align-items: center;
+}
+
+/* Main Content */
+.content {
+  margin: 0;
+  padding: 10px;
+  box-shadow: 0 0 10px black;
+  border-radius: 20px;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* Form Styling */
+.form {
+  margin-top: 0; /* Remove negative margin to avoid overlap */
+}
+.bi {
+  width: 20px;
+  height: 20px;
+}
+.home svg {
+  color: #03aef0;
+  text-decoration: none;
+}
+
+.home:hover {
+  color: #ee0d52;
+}
+
+.picture {
+  background-color: #03aef0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 25px;
+  height: 520px;
+}
+
+.img {
+  border-radius: 25px;
+  animation: move 5s infinite;
+}
+
+.title h1 {
+  font-size: 40px;
+  font-weight: 510;
+  background: linear-gradient(to right, var(--main-color), #ee0d62);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title p {
+  font-size: var(--p-font);
+  font-weight: 600;
+  color: #011f46;
+}
+
+.submit .btn {
+  width: 100%;
+  /* Mengatur lebar tombol */
+  background-color: var(--main-color);
+  /* Mengatur warna latar tombol */
+  border-radius: 5px;
+  /* Membuat sudut tombol melengkung dengan radius 15px */
+  font-weight: bold;
+  /* Mengatur teks tombol menjadi tebal */
+  color: white;
+}
+
+.submit .btn:hover {
+  background-color: white;
+  /* Mengubah warna latar tombol saat hover */
+  color: var(--main-color);
+  border: solid 1px var(--main-color);
+  /* Mengubah warna border tombol saat hover */
+}
+
+.box {
+  padding-bottom: 20px;
+}
+
+.link {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+.link:hover {
+  font-weight: bold;
+  color: #ee0d52;
+}
+.label {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color1);
+  opacity: 90%;
+  margin-bottom: 8px; /* Jarak bawah antara label dan input */
+  display: block; /* Membuat label menjadi block untuk lebih teratur */
+}
+/* Modal Pop-up Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.2);
+  backdrop-filter: blur(5px); /* Blur effect for background */
+}
+
+.modal-content {
+  background-color: white;
+  margin: auto;
+  margin-top: 150px;
+  padding: 10px;
+  border-radius: 15px;
+  width: 500px;
+  height: 400px;
+  text-align: center;
+  box-shadow: 0 0 50px black;
+}
+
+.verified {
+  height: 150px;
+  width: 150px;
+  margin-left: 160px;
+  transition: transform 10s ease;
+  animation: zoom 2s 1;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal p {
+  font-size: 150%;
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+.modal-body {
+  font-size: 100%;
+}
+
+.modal img {
+  size: 20px;
+}
+
+.btn-modal {
+  margin-top: 20px;
+  background-color: var(--main-color);
+  color: white;
+  width: 300px;
+  margin-left: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-modal:hover {
+  background-color: white;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+}
+.login {
+  font-size: var(--p-font);
+}
+.login a {
+  text-decoration: none;
+  color: var(--main-color);
+  font-size: var(--p-font);
+  font-weight: 600;
+}
+
+/* popup */
+/* popup */
+.text h5 {
+  font-size: 30px;
+  color: var(--text-color1);
+  font-weight: 600;
+}
+.modal-header h5 {
+  font-size: 20px;
+  color: var(--text-color1);
+  font-weight: 500;
+}
+.text p {
+  font-size: 17px;
+  color: var(--text-color1);
+  font-weight: 500;
+  opacity: 90%;
+}
+.text a {
+  font-size: 17px;
+  color: var(--text-color1);
+  font-weight: 600;
+  padding: 10px;
+}

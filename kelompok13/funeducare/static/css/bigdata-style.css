@@ -1,0 +1,223 @@
+/* Reset dasar untuk margin dan padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-image: url("img/baground.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container untuk sidebar dan konten */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Styling sidebar */
+.sidebar {
+  width: 300px;
+  background-color: #f1f4f9;
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #15a6f5;
+  font-size: 28px;
+}
+
+/* Styling menu sidebar */
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  margin-bottom: 15px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #1f1f1f;
+  font-weight: bold;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+  background-color: #15a6f5;
+  color: #fff;
+}
+
+/* Styling tombol kembali */
+.btn-back {
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 30px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  text-align: center;
+  font-size: 16px;
+}
+
+.btn-back:hover {
+  background-color: #5548c8;
+}
+
+/* Styling konten utama */
+.content {
+  padding: 40px;
+  width: 100%;
+  overflow: auto;
+}
+
+/* Judul halaman */
+.content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(90deg, #03aef0, #ee0d62);
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+}
+
+.content h2 {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+/* Profil card untuk berbagai halaman */
+.profile-cards,
+.program-cards,
+.activity-list,
+.report-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.profile-card,
+.program-card,
+.activity-card,
+.report-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.profile-card:hover,
+.program-card:hover,
+.activity-card:hover,
+.report-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling gambar profil */
+.profile-img {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Informasi profil */
+.profile-info h3,
+.program-info h3,
+.activity-card h3,
+.report-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.profile-info p,
+.program-info p,
+.activity-card p,
+.report-card p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Tombol pada card program dan aktivitas */
+.program-card button,
+.activity-card button,
+.report-card button {
+  background-color: #6c63ff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.program-card button:hover,
+.activity-card button:hover,
+.report-card button:hover {
+  background-color: #5548c8;
+}
+
+/* Media Queries untuk responsivitas */
+@media (max-width: 768px) {
+  .profile-card,
+  .program-card,
+  .activity-card,
+  .report-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card,
+  .program-card,
+  .activity-card,
+  .report-card {
+    width: 100%;
+  }
+}
+
+.activity-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.report-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}

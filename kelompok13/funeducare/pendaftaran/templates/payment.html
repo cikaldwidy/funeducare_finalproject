@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pendaftaran Berhasil - FunEduCare</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}" />
+  </head>
+  <body>
+    <div class="success-container">
+      <img
+        src="{% static 'images/logo2.png' %}"
+        alt="FunEduCare Logo"
+        class="logo"
+      />
+
+      <h2>Pendaftaran Diproses!</h2>
+      <div class="warning-message">
+        <p>Hii {{user.username}} pendaftaran anda dalam proses</p>
+        <p>
+          Untuk menyelesaikan proses pendaftaran, silakan lanjutkan ke
+          pembayaran dengan mengklik tombol di bawah ini.
+        </p>
+      </div>
+
+      <div class="button-group">
+        <a href="{% url 'users:profile-base' %}" class="btn btn-secondary">
+          Kembali
+        </a>
+        <a href="{{ payment_url }}" class="btn btn-primary" target="_blank">
+          Lanjutkan ke Pembayaran
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

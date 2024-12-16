@@ -1,0 +1,46 @@
+{% extends 'base/base_element.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/riwayatkegiatan-style.css' %}" />
+{% endblock %} {% block body_block %}
+<div class="container py-5">
+  <h2 class="text-center mb-5 title">🧾 Riwayat Kegiatan</h2>
+
+  {% if riwayat_programs %}
+  <div class="activity-timeline">
+    {% for riwayat in riwayat_programs %}
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <h5 class="timeline-header">{{ riwayat.program_name }}</h5>
+        <div class="timeline-content">
+          <p><strong>Nama Anak:</strong> {{ riwayat.child_name }}</p>
+          <p>
+            <strong>Tanggal Mulai:</strong> {{ riwayat.program_start_date }}
+          </p>
+          <p>
+            <strong>Tanggal Selesai:</strong> {{ riwayat.program_end_date }}
+          </p>
+          <p>
+            <strong>Deskripsi Program:</strong> {{ riwayat.program_description}}
+          </p>
+          <p><strong>Range Usia:</strong> {{ riwayat.age_range }}</p>
+          <p>
+            <strong>Tanggal Pendaftaran:</strong> {{ riwayat.registration_date}}
+          </p>
+          <p><strong>Jenis Biaya:</strong> {{ riwayat.fee_type }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <p>Belum ada riwayat kegiatan.</p>
+  </div>
+  {% endif %}
+  <div class="p-2 text-center">
+    <a href="{% url 'users:profile-base' %}" class="btn btn-primary">Kembali</a>
+    <a href="{% url 'users:profile-base' %}" class="btn btn-secondary">  <i class="fa-solid fa-house"></i> Home</a>
+  
+  </div>
+</div>
+
+{% endblock %}

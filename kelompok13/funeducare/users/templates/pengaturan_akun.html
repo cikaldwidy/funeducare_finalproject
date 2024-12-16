@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+{% extends 'base/base_profile.html' %} {% load static %} 
+{% block head_title %} funeducare-pengaturan akun{% endblock head_title %}{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pengaturanakun-stylee.css' %}" />
+{% endblock %} {% block body_block %}
+<!-- Main Content -->
+<div class="container  rounded-3 p-3">
+  <div
+    class="content row col-12 col-md-auto align-items-center justify-content-center"
+  >
+    <div class="col-12 text">
+      <!-- Message Section -->
+      {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          {% if message.tags == 'error' %}
+            <!-- Jika error tampilkan warna merah -->
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+            </div>
+          {% else %}
+            <!-- Untuk pesan informasi dan lainnya -->
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="content-text">
+      <h3 class="mb-4 text-center">Akun</h3>
+
+      <!-- User Info Section -->
+      <h4 class="text-center">Konfirmasi akun</h4>
+      </div>
+      <div class="d-flex flex-row justify-content-center align-items-center mb-4 ">
+        <div class="mb-2 mb-md-0">
+          {% if form.profile_image.value %}
+          <img
+            src="{{ form.profile_image.value.url }}"
+            alt="Profile Image"
+            class="rounded-circle"
+            style="width: 70px; height: 70px"
+          />
+          {% elif request.user.profile_image %}
+          <img
+            src="{{ request.user.profile_image.url }}"
+            alt="Profile Image"
+            class="rounded-circle"
+            style="width: 70px; height: 70px"
+          />
+          {% else %}
+          <img
+            src="{% static 'images/IMG_6643.png' %}"
+            alt="Profile Image"
+            class="rounded-circle bg-secondary"
+            style="width: 70px; height: 67px"
+          />
+          {% endif %}
+        </div>
+
+        <div class="ms-3 mt-2 akun">
+          <h5><i class="fa-solid fa-user me-2"></i>{{ user.username }}</h5>
+          <p><i class="fa-solid fa-envelope me-2"></i>{{ user.email }}</p>
+        </div>
+      </div>
+      <div class="content-text mt-4">
+        <h4>Informasi Pengguna</h4>
+        <div class="mt-3 col-12 ">
+            <div class="mt-3 col-12">
+                <div class="mt-2 d-flex flex-column  col-12">
+                  <div class="d-flex flex-row  col-12">
+                  
+                    <div class="col-5 text">
+                        <h5><i class="fa-regular fa-user me-2"></i>Nama Depan</h5>
+                        <h5><i class="fa-solid fa-user me-2"></i>Nama Belakang</h5>
+                        <h5><i class="fa-solid fa-mars-and-venus me-1"></i>Jenis Kelamin</h5>
+                        <h5><i class="fa-solid fa-square-phone me-2"></i>Telepon/HP</h5>
+                        <h5><i class="fa-solid fa-location-dot me-2"></i>Alamat</h5>
+                    </div>
+                    <div class="col-8 d-flex flex-column align-items-start">
+                      <h5 class="text-end">{{ user.first_name }} </h5> 
+                      <h5 class="text-end">{{ user.last_name }}</h5> 
+                      <h5 class="text-end">{{ user.gender|default:'-' }}</h5>
+                      <h5 class="text-end">{{ user.no_telp|default:'-'  }}</h5>
+                      <h5 class="text-end">{{ user.alamat|default:'-' }}</h5> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+          
+        </div>
+            <!-- Tombol Edit Profil -->
+            <button type="button" id="editButton" class="btn btn-primary mt-5">
+              Edit Akun
+            </button>
+
+            <!-- Modal untuk Edit Profil -->
+            <div id="editModal" class="modal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Edit Akun Profil Anda</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group mb-3">
+                        <label for="id_username">Nama Lengkap <span
+                            class="text-danger"
+                            style="font-size: 20px; font-weight: 600"
+                            >*</span
+                          ></label>
+                        {{ form.username }}
+                      </div>
+
+                      <div class="form-group mb-3">
+                        <label for="id_first_name">Nama Depan <span
+                            class="text-danger"
+                            style="font-size: 20px; font-weight: 600"
+                            >*</span
+                          ></label>
+                        {{ form.first_name }}
+                      </div>
+
+                      <div class="form-group mb-3">
+                        <label for="id_last_name">Nama Belakang <span
+                            class="text-danger"
+                            style="font-size: 20px; font-weight: 600"
+                            >*</span
+                          ></label>
+                        {{ form.last_name }}
+                      </div>
+                      <div class="mb-3">
+                        <label for="id_gender" class="form-label">Jenis Kelamin <span
+                            class="text-danger"
+                            style="font-size: 20px; font-weight: 600"
+                            >*</span
+                          ></label>
+                        {{ form.gender }}
+                    </div>
+                      <div class="form-group mb-3">                     
+                        <label for="id_no_telp">Telepon/HP <span
+                            class="text-danger"
+                            style="font-size: 20px; font-weight: 600"
+                            >*</span
+                          ></label>
+                        <p>no.telp anda ! Contoh : 08xxxxxxxxxx</p>
+                        {{ form.no_telp }}
+                      </div>
+                  
+                      <div class="form-group mb-3 ">                
+                        <label for="id_alamat">Alamat Asal <span
+                            class="text-danger"
+                            style="font-size: 20px; font-weight: 600"
+                            >*</span
+                          ></label>
+                        <p>Isikan dengan format ! Provinsi/Kota</p>
+                        {{ form.alamat }}
+                      </div>
+
+                      <hr
+                      class="border border-dark border-1 mt-3"
+                      style="border-style: dashed"
+                    />
+                      <!-- Profile Image Upload Section -->
+                      <h4>Edit Foto Profil Anda</h4>
+                      <div class=" mt-3 mb-3 delete">
+                        <label for="id_profile_image" class="img">
+                          <i class="fa fa-upload"></i> Ubah Gambar
+                        </label>
+                        {{ form.profile_image }}
+                        <p>Format : PNG/JPG/SVG (Dimensions : 255 x 255)</p>
+                       
+                      </div>
+
+                      <!-- Delete Profile Image Section -->
+                      <div class="mb-3">
+                        <label for="delete_image" class="img">
+                          <i class="fa fa-trash"></i> Hapus Gambar
+                        </label>
+                        <input
+                          class="chechkbox"
+                          type="checkbox"
+                          name="delete_image"
+                          id="delete_image"
+                        />
+                      </div>
+
+                      <button type="submit" class="btn btn-primary">
+                        Perbarui Akun
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row gap-2 mt-2 pw">
+            <h4>Ubah Kata Sandi? </h4>
+            <a href="{% url 'users:change_password' %}" 
+              >Klik here</a
+            >       
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/profil.js' %}"></script>
+{% endblock %}

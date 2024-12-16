@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/programs-style.css' %}" />
+{% endblock %} {% block extra_link %}
+<link rel="stylesheet" href="{% static 'css/programs-style.css' %}" />
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+<!--Font-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+{% endblock %} {% block body_block%}
+<body>
+  <main>
+    <section class="program-description-section py-5" style="margin-top: 150px">
+      <div class="container content-2">
+        <h2 class="text-center fs-1 fw-bolder mb-5">Pendaftaran Berhasil!</h2>
+        <div class="text-center mt-2 mb-5">
+            <p class="description-text">
+              Terima kasih telah mendaftar lomba, silahkan check email untuk informasi lebih lanjut mengenai acara!
+            </p>
+        </div>
+        <div class="button-group mb-5 d-flex">
+            <a href="{% url 'programs:programs' %}" class="w-100 text-decoration-none">
+              <button
+                class="btn btn-block btn-2 mt-3 w-100"
+                style="margin-top: auto"
+              >
+                Kembali Ke Program
+              </button>
+            </a>
+          </div>
+      </div>
+    </section>
+
+  <!-- link icon bostrap -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+  />
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!--Jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="{% static 'js/programs.js' %}"></script>
+</body>
+{% endblock %}

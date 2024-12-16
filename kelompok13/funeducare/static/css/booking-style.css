@@ -1,0 +1,170 @@
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: rgba(255, 255, 255, 0.8);
+  --font-big: 1.5rem;
+  --font-medium: 1rem;
+  --font-small: 0.875rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  /* background: url("../images/bg_fasilitas2.jpg") no-repeat center center fixed; */
+  background-color: #011f46;
+  background-size: cover;
+  color: var(--text-color1);
+}
+
+.container {
+  position: relative;
+  background: var(--bg-opacity);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.form-logo {
+  display: block;
+  margin: 0 auto 20px;
+  width: 100px;
+  height: auto;
+}
+
+.judul {
+  font-size: var(--font-big);
+  font-weight: bold;
+  text-align: center;
+  color: var(--text-color1);
+}
+
+.keterangan {
+  font-size: var(--font-small);
+  text-align: center;
+  color: var(--text-color1);
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: var(--font-medium);
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-group-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-left: 5px;
+}
+
+.form-group-input input[type="radio"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.form-group-input label {
+  margin: 0;
+  font-size: var(--font-small);
+  font-weight: normal;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.form-text.text-muted {
+  font-size: var(--font-small);
+  color: var(--text-color1);
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+.form-check {
+  display: flex;
+  margin: 30px;
+  font-size: var(--font-small);
+  gap: 4px;
+}
+
+.form-check-input {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.form-check-label {
+  margin: 0;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-group .btn {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px 15px;
+  color: var(--text-color2);
+  border: none;
+  border-radius: 5px;
+  font-size: var(--font-medium);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+/* Updated styling for the cancel button */
+.button-group .btn-secondary {
+  background-color: #6c757d;
+}
+
+.button-group .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Styling for the primary button */
+.button-group .btn-primary {
+  background-color: var(--main-color);
+}
+
+.button-group .btn-primary:hover {
+  background-color: #0e87c2;
+}
+
+.form-text.text-muted {
+  font-size: var(--font-small);
+  color: var(--text-color1);
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 50%;
+  }
+
+  .form-logo {
+    width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-logo {
+    width: 80px;
+  }
+}

@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  text-decoration: none;
+  list-style: none;
+}
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: #fffefa;
+
+  --big-font: 3rem;
+  --title-font: 40px;
+  --p-font: 1rem;
+}
+body {
+  background-color: var(--bg-color) !important;
+}
+.container {
+  background-color: var(--bg-color);
+}
+/* Style the labels */
+.form-group label {
+  font-weight: 600;
+  color: var(--text-color1);
+  display: block;
+}
+.form-group1 label {
+  font-weight: 600;
+  color: var(--text-color1);
+  display: block;
+}
+.form-label {
+  font-weight: 600;
+  color: var(--text-color1);
+  display: block;
+}
+/* Style the input fields */
+/* Style umum untuk input, select, dan textarea */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: var(--text-color1);
+  background-color: var(--bg-color);
+  border: 1px solid var(--text-color1);
+  border-radius: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+/* Efek saat input berada dalam keadaan focus */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; /* Menghilangkan outline default */
+  border-color: var(--main-color); /* Mengubah warna border saat fokus */
+  box-shadow: 0 0 8px var(--main-color); /* Menambahkan bayangan untuk fokus */
+}
+
+/* Add some space between the fields and the buttons */
+button {
+  margin-top: 1rem;
+}
+
+.content-text h3 {
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--text-color1);
+}
+
+/* Modal Styles */
+
+.modal {
+  display: none; /* Modal disembunyikan secara default */
+  position: fixed; /* Tetap di tempat meskipun halaman di-scroll */
+  z-index: 1050; /* Agar modal berada di atas elemen lain */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan gelap */
+  overflow: auto;
+}
+
+.modal-dialog {
+  margin: 10% auto;
+  max-width: 500px;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+#editModal {
+  .modal-header {
+    background: linear-gradient(to right, #011f46, var(--main-color));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color2);
+  }
+}
+
+/* Gaya untuk tombol close */
+.close {
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--bg-color);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.close:hover {
+  color: var(--bg-color);
+  opacity: 50%;
+}
+
+.form-group p {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.content-text h4 {
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--text-color1);
+  opacity: 90%;
+}
+.text h5 {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-color1);
+}
+@media (max-width: 768px) {
+  .text h5 {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-color1);
+  }
+  .content-text h4 {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-color1);
+    opacity: 90%;
+  }
+}
+.akun h5 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-color1);
+}
+.akun p {
+  font-size: var(--p-font);
+  background: linear-gradient(to right, #011f46, var(--main-color));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+.pw h4 {
+  font-size: 17px;
+  color: var(--text-color1);
+}
+.pw a {
+  font-weight: 600;
+  color: var(--main-color);
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.img {
+  font-size: 17px;
+  font-weight: 500;
+}
+.delete p {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 300;
+}

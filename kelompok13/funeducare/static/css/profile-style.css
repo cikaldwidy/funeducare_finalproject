@@ -1,0 +1,455 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  text-decoration: none;
+  list-style: none;
+}
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5a623;
+  --background-color: #f0f4f8;
+  --text-color: #333;
+  --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.greeting-container {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border-radius: 15px;
+  color: white;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: var(--card-shadow);
+}
+
+.greeting-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.greeting-message {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.current-time {
+  font-size: 16px;
+  opacity: 0.8;
+}
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: #fffefa;
+
+  --big-font: 3rem;
+  --title-font: 40px;
+  --p-font: 1rem;
+}
+
+/* Style the labels */
+.form-group label {
+  font-weight: 600;
+  color: var(--text-color1);
+  display: block;
+}
+.form-group1 label {
+  font-weight: 600;
+  color: var(--text-color1);
+  display: block;
+}
+.form-label {
+  font-weight: 600;
+  color: var(--text-color1);
+  display: block;
+}
+/* Style the input fields */
+/* Style umum untuk input, select, dan textarea */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: var(--text-color1);
+  background-color: var(--bg-color);
+  border: 1px solid var(--text-color1);
+  border-radius: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+/* Efek saat input berada dalam keadaan focus */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; /* Menghilangkan outline default */
+  border-color: var(--main-color); /* Mengubah warna border saat fokus */
+  box-shadow: 0 0 8px var(--main-color); /* Menambahkan bayangan untuk fokus */
+}
+
+/* Add some space between the fields and the buttons */
+button {
+  margin-top: 1rem;
+}
+
+.content-text h3 {
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--text-color1);
+}
+
+/* Modal Styles */
+
+.modal {
+  display: none; /* Modal disembunyikan secara default */
+  position: fixed; /* Tetap di tempat meskipun halaman di-scroll */
+  z-index: 1050; /* Agar modal berada di atas elemen lain */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan gelap */
+  overflow: auto;
+}
+
+.modal-dialog {
+  margin: 10% auto;
+  max-width: 500px;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+#editModal {
+  .modal-header {
+    background: linear-gradient(to right, #011f46, #011f46);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color2);
+  }
+}
+
+/* Gaya untuk tombol close */
+.close {
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--bg-color);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.close:hover {
+  color: var(--bg-color);
+  opacity: 50%;
+}
+
+.form-group p {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* content */
+body {
+  background-color: var(--bg-color) !important;
+}
+.content-profil {
+  color: var(--text-color2);
+  background-color: #222d31;
+}
+.content-profil h4 {
+  font-size: 25px;
+  font-weight: 500;
+  opacity: 95%;
+}
+.content-profil span {
+  font-size: 23px;
+  font-weight: 500;
+}
+.content-profil p {
+  color: var(--text-color2);
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.content .konten-1 {
+  background-color: #00c0ef;
+}
+.content .konten-1 h5 {
+  margin-top: 10px;
+  /* color: #e5e5e5; */
+  color: var(--text-color1);
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 23px;
+}
+.content .konten-1 p {
+  /* color: #d2d2d2; */
+  color: var(--text-color1);
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 18px;
+  letter-spacing: 1.2px;
+}
+.content .konten-1 .card-header {
+  background-color: #04aed8 !important;
+  border-bottom: none;
+}
+
+/* 2 */
+.content .konten-2 {
+  background-color: #f012bf;
+}
+.content .konten-2 h5 {
+  margin-top: 10px;
+  color: #e5e5e5;
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 23px;
+}
+.content .konten-2 p {
+  color: #d2d2d2;
+  font-weight: 500;
+  opacity: 100%;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+}
+.content .konten-2 .card-header {
+  background-color: #cf13a7 !important;
+  border-bottom: none;
+}
+.content .konten-2 .card-body a {
+  color: #d2d2d2;
+  font-weight: 500;
+}
+
+/* 3 */
+.content .konten-3 {
+  background-color: #f39c11;
+}
+.content .konten-3 h5 {
+  margin-top: 10px;
+  color: #e5e5e5;
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 23px;
+}
+.content .konten-3 p {
+  color: #d2d2d2;
+  font-weight: 500;
+  opacity: 100%;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+}
+.content .konten-3 .card-header {
+  background-color: #d68b11 !important;
+  border-bottom: none;
+}
+.content .konten-3 .card-body a {
+  color: #d2d2d2;
+  font-weight: 500;
+}
+
+/* 4 */
+
+.content .konten-4 {
+  background-color: #3d9970;
+}
+.content .konten-4 h5 {
+  margin-top: 10px;
+  color: #e5e5e5;
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 23px;
+}
+.content .konten-4 p {
+  color: #d2d2d2;
+  font-weight: 500;
+  opacity: 100%;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+}
+.content .konten-4 .card-header {
+  background-color: #358a64 !important;
+  border-bottom: none;
+}
+.content .konten-4 .card-body a {
+  color: #d2d2d2;
+  font-weight: 500;
+}
+
+.konten-5 {
+  background-color: #01619d !important;
+}
+.konten-5 h5 {
+  margin-top: 10px;
+  color: #e5e5e5;
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 23px;
+}
+
+.konten-5 .card-header {
+  background-color: #025589 !important;
+  border-bottom: none;
+}
+.konten-5 h4 {
+  margin-top: 10px;
+  color: var(--text-color2);
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 23px;
+}
+.konten-5 h6 {
+  color: var(--text-color2);
+  font-weight: 20px;
+}
+.card-text {
+  color: var(--text-color2);
+}
+
+.program {
+  /* background-color: #04a3ff !important; */
+  background-color: var(--bg-color) !important;
+}
+.konten-5 li {
+  color: var(--text-color1);
+}
+.konten-5 .card-title {
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--text-color1);
+}
+.konten-5 .nama-anak {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-color1);
+}
+.konten-5 .kegiatan-id {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-color1);
+}
+.konten-5 .deskripsi {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-color1);
+  line-height: 1;
+  text-align: justify;
+}
+.konten-5 .status {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-color1);
+}
+
+.content .konten-7 {
+  background-color: #de4b39;
+}
+.content .konten-7 h5 {
+  margin-top: 10px;
+  color: #e5e5e5;
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 23px;
+}
+.content .konten-7 p {
+  color: #d2d2d2;
+  font-weight: 500;
+  opacity: 100%;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+}
+.content .konten-7 .card-header {
+  background-color: #c94534 !important;
+  border-bottom: none;
+}
+.content .konten-7 .card-body a {
+  color: #d2d2d2;
+  font-weight: 500;
+}
+
+.content .konten-6 {
+  background-color: #00c0ef;
+}
+.content .konten-6 h5 {
+  margin-top: 10px;
+  color: #e5e5e5;
+  font-weight: 500;
+  opacity: 90%;
+  font-size: 23px;
+}
+.content .konten-6 p {
+  color: #d2d2d2;
+  font-weight: 500;
+  opacity: 100%;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+}
+.content .konten-6 .card-header {
+  background-color: #02a9d3 !important;
+  border-bottom: none;
+}
+.content .konten-6 .card-body a {
+  color: #d2d2d2;
+  font-weight: 500;
+}
+
+/* Styling untuk tombol transparan */
+.btn-transparent {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--text-color2); /* Warna teks */
+  border: 2px solid var(--text-color2); /* Border berwarna */
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Menambahkan margin di antara icon dan teks */
+.btn-transparent i {
+  margin-right: 8px; /* Memberikan jarak antar ikon dan teks */
+  color: var(--text-color2);
+}
+
+/* Efek hover untuk tombol */
+.btn-transparent:hover {
+  background-color: #ffffff55;
+  color: var(--text-color2);
+  border-color: var(--text-color2); /* Warna border saat hover */
+}
+
+/* Efek fokus untuk aksesibilitas */
+.btn-transparent:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--text-color1);
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'base/base_element.html' %} {% load static %} {% block head_title %}
+funeducare-verifikasi email{% endblock head_title %}{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/forgot.css' %}" />
+{% endblock %} {% block body_block %}
+<div class="home">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    class="bi bi-arrow-left"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+    />
+  </svg>
+  <a href="forgot.html" class="link">Back Alamat Email</a>
+</div>
+<div class="content-forgot">
+  <div class="text">
+    <h2 class="animate__animated animate__fadeInUp">Kode Verifikasi</h2>
+    <p>Masukkan kode verifikasi yang telah dikirim ke alamat email</p>
+  </div>
+  <div>
+    <form action="./newpassword.html">
+      <div class="mb-3">
+        <input
+          type="text"
+          placeholder="Masukkan Kode Verifikasi"
+          class="form-control"
+          id="text"
+          name="text"
+          required
+        />
+      </div>
+      <div class="submit">
+        <button href="./newpassword.html" type="submit" class="btn">
+          Verifikasi
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

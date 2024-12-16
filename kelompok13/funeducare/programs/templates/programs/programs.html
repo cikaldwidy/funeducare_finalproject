@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/programs-style.css' %}" />
+{% endblock %} {% block extra_link %}
+<link rel="stylesheet" href="{% static 'css/programs-style.css' %}" />
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+<!--Font-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+{% endblock %} {% block body_block%}
+<body>
+  <main>
+    <!--Hero Programs Section-->
+    <section class="image-section">
+      <img src="{% static 'images/bg-programs.png' %}" alt="Program Image" />
+      <div class="overlay content-1">
+        <h1 class="p-2">Programs</h1>
+        <hr class="garis mx-auto mx-md-0" />
+      </div>
+    </section>
+
+    <section class="program-description-section py-5" style="margin-top: -55px">
+      <div class="container content-2">
+        <h2 class="text-center fs-1 fw-bolder mb-5">Tentang Program Kami</h2>
+        <!-- Feature Row -->
+        <div class="row text-center g-4">
+          <div class="col-md-4 mb-4">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-heart"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+                />
+              </svg>
+            </div>
+            <h5 class="mt-3">Lingkungan Aman</h5>
+            <p>
+              Kami memberikan keamanan dan kenyamanan terbaik bagi anak-anak..
+            </p>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-book"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"
+                />
+              </svg>
+            </div>
+            <h5 class="mt-3">Program Edukatif</h5>
+            <p>
+              Setiap kegiatan dirancang untuk mendukung perkembangan fisik dan
+              mental anak.
+            </p>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-emoji-laughing"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                />
+                <path
+                  d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5"
+                />
+              </svg>
+            </div>
+            <h5 class="mt-3">Aktivitas Menyenangkan</h5>
+            <p>
+              Kami menyediakan kegiatan yang interaktif dan menyenangkan untuk
+              anak-anak.
+            </p>
+          </div>
+        </div>
+        <!-- Main Description Text -->
+        <div class="text-center mt-2 mb-5">
+          <p class="description-text">
+            Di daycare kami, anak-anak akan ditemani oleh pengasuh berpengalaman
+            dan program yang dirancang khusus sesuai dengan usia dan
+            perkembangan mereka. Kami memastikan anak Anda berada di lingkungan
+            yang mendukung pertumbuhan optimal, baik secara emosional, sosial,
+            maupun intelektual.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="service">
+      <div class="content-2">
+        <h2 class="text-center fs-1 fw-bolder mb-5">Layanan Kami</h2>
+      </div>
+      <!-- Tab Navigation -->
+      <div
+        id="service-tab-nav"
+        class="d-flex flex-wrap flex-md-row overflow-auto mb-4 pb-2 justify-content-center"
+        role="navigation"
+        aria-label="Program navigation"
+      >
+        <ul
+          class="d-flex flex-md-row flex-column gap-2 list-unstyled m-0 w-100"
+        >
+          <li
+            class="col-md-3 flex-grow-1 d-grid gap-2 align-items-center justify-content-md-center justify-content-start"
+          >
+            <button
+              class="program-tab btn btn-block d-flex align-items-center px-4 py-2 rounded-3 fw-bold active"
+              data-program="infantcare"
+              role="tab"
+              aria-selected="true"
+              aria-controls="infantcare"
+            >
+              <a class="fs-5 text-decoration-none" href="#infantcare" style="color: #ec4899"
+                >Infant Care</a
+              >
+            </button>
+          </li>
+          <li
+            class="col-md-3 flex-grow-1 d-grid gap-2 align-items-center justify-content-md-center justify-content-start"
+          >
+            <button
+              class="program-tab btn btn-block d-flex align-items-center px-4 py-2 rounded-3 fw-bold"
+              data-program="toddler"
+              role="tab"
+              aria-selected="false"
+              aria-controls="toddler"
+            >
+              <a class="fs-5 text-decoration-none" href="#toddler" style="color: #9333ea"
+                >Toddler</a
+              >
+            </button>
+          </li>
+          <li
+            class="col-md-3 flex-grow-1 d-grid gap-2 align-items-center justify-content-md-center justify-content-start"
+          >
+            <button
+              class="program-tab btn btn-block d-flex align-items-center px-4 py-2 rounded-3 fw-bold"
+              data-program="preschool"
+              role="tab"
+              aria-selected="false"
+              aria-controls="preschool"
+            >
+              <a class="fs-5 text-decoration-none" href="#preschool" style="color: #3b82f6"
+                >Pre School</a
+              >
+            </button>
+          </li>
+          <li
+            class="col-md-3 flex-grow-1 d-grid gap-2 align-items-center justify-content-md-center justify-content-start"
+          >
+            <button
+              class="program-tab btn btn-block d-flex align-items-center px-4 py-2 rounded-3 fw-bold"
+              data-program="prekindergarten"
+              role="tab"
+              aria-selected="false"
+              aria-controls="prekindergarten"
+            >
+              <a class="fs-5 text-decoration-none" href="#prekindergarten" style="color: #10b981"
+                >Pre Kindergarten</a
+              >
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tab Content -->
+       {% include 'programs/content_program_detail.html' %}
+    </section>
+
+    <!--Upcoming Event-->
+    <section id="upcoming" class="hidden pt-5 p-4" id="upcoming-event">
+      <div class="container">
+        <div class="row g-5 align-items-center content-2">
+          <h2 class="text-center fs-1 fw-bolder mx-auto pb-4">
+            Upcoming Event
+          </h2>
+          <div class="col-md-6">
+            <img
+              src="{% static 'images/Junior-Cooking-Competition.jpg' %}"
+              alt="Deskripsi Gambar"
+              class="img-custom rounded mx-auto d-block"
+            />
+          </div>
+          <div class="col-md-6">
+            <h5 class="fs-3 fw-bolder pb-2">
+              Junior Chef Cooking Competition: Hai Moms, Siapkan Si Kecil
+              Menjadi Bintang Dapur!
+            </h5>
+            <p class="fw-medium">
+              Jangan lewatkan kesempatan emas ini! Daftarkan Si Kecil sekarang
+              dan saksikan mereka bersinar di panggung dapur! 🌟
+              <br />
+              Yuk, moms! Ayo ajak Si Kecil untuk ikut berpartisipasi dan
+              tunjukkan bakatnya! 🍽️✨
+            </p>
+            <h5 class="pt-5">Ayuk daftar sebelum ketinggalan</h5>
+            <h3 id="teks" class="pb-1" style="color: red"></h3>
+            <div class="button-group mb-5 d-flex">
+              <button
+                class="btn btn-1 mt-3 w-100"
+                data-bs-target="#cookingCompetitionModal"
+                data-bs-toggle="modal"
+              >
+                Daftar Lomba Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Program Lainnya-->
+    <section class="hidden pt-5 pb-5" id="program-lainnya">
+      <div class="container content-2">
+        <h2 class="text-center fs-1 fw-bolder mx-auto pb-4">Program Lainnya</h2>
+        <div class="row g-4">
+          <!--Parenting Seminar-->
+          <div class="col-md">
+            <div class="card border border-1 d-flex flex-column h-100">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fs-2 fw-semibold text-center">
+                  Seminar Parenting: Edukasi Anak
+                </h5>
+                <p
+                  class="card-text fw-medium mt-2 text-center"
+                  style="margin: auto"
+                >
+                  Ikuti seminar yang dipandu oleh para ahli mengenai berbagai
+                  topik parenting
+                </p>
+                <div class="button-group mb-5 d-flex">
+                  <button
+                    data-bs-target="#parentingSeminarModal"
+                    data-bs-toggle="modal"
+                    class="btn btn-1 mt-3 w-100 rounded-pill"
+                  >
+                    Daftar Seminar Parenting
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Cooking Class for Children's Nutrition-->
+          <div class="col-md">
+            <div class="card border border-1 d-flex flex-column h-100">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fs-2 fw-semibold text-center">
+                  Kelas Memasak Nutrisi Anak
+                </h5>
+                <p
+                  class="card-text fw-medium mt-2 text-center"
+                  style="margin: auto"
+                >
+                  Pelajari cara menyiapkan makanan bergizi dan lezat untuk
+                  anak-anak Anda
+                </p>
+                <div class="button-group mb-5 d-flex">
+                  <button
+                    data-bs-target="#cookingClassModal"
+                    data-bs-toggle="modal"
+                    class="btn btn-1 mt-3 w-100 rounded-pill"
+                  >
+                    Daftar Kelas Memasak
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Children's Work Exhibitions-->
+          <div class="col-md">
+            <div class="card border border-1 d-flex flex-column h-100">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fs-2 fw-semibold text-center">
+                  Pameran Karya Anak - Anak
+                </h5>
+                <p class="card-text fw-medium text-center">
+                  Menampilkan berbagai karya dan prestasi luar biasa yang
+                  dihasilkan oleh anak-anak.
+                </p>
+                <div class="button-group mb-5 d-flex">
+                  <button
+                    data-bs-target="#childrenWorkExhibitions"
+                    data-bs-toggle="modal"
+                    class="btn btn-1 mt-3 w-100 rounded-pill"
+                  >
+                    Daftar Kegiatan Pameran
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Modal Area Button-->
+    <!--Modal Button Seminar Parenting-->
+    <div
+      class="modal fade"
+      id="parentingSeminarModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="parentingSeminarModalLabel">
+              Seminar Parenting Yang Akan Datang
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Judul Seminar</th>
+                  <th>Pemateri</th>
+                  <th>Harga</th>
+                  <th>Jumlah tiket</th>
+                  <th>Info Book</th>
+                </tr>
+              </thead>
+              {% include 'programs/parenting_seminar.html' %}
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal Button Cooking Class-->
+    <div
+      class="modal fade"
+      id="cookingClassModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="cookingClassModalLabel">
+              Cooking Class Yang Akan Datang
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Judul Kelas</th>
+                  <th>Pemateri</th>
+                  <th>Harga</th>
+                  <th>Jumlah tiket</th>
+                  <th>Info Book</th>
+                </tr>
+              </thead>
+              {% include 'programs/cooking_classes.html' %}
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal Button Children's Work Exhibitions-->
+    <div
+      class="modal fade"
+      id="childrenWorkExhibitions"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="childrenWorkExhibitionsLabel">
+              Pameran Yang Akan Datang
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Judul Pameran</th>
+                  <th>Deskripsi</th>
+                  <th>Harga</th>
+                  <th>Jumlah tiket</th>
+                  <th>Info Pendaftaran</th>
+                </tr>
+              </thead>
+              {% include 'programs/children_exhibitions.html' %}
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal Button Cooking Competition-->
+    <div
+      class="modal fade"
+      id="cookingCompetitionModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Isi Data Diri Buah Hati
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            {% include 'programs/form_competition.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- link icon bostrap -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+  />
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!--Jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="{% static 'js/programs.js' %}"></script>
+</body>
+{% endblock %}

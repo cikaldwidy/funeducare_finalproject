@@ -1,0 +1,18 @@
+{% load humanize %}
+<tbody>
+  {% for class in cooking_class %}
+  <tr>
+    <td>{{ class.date|date:"d F Y" }}</td>
+    <td>{{ class.title }}</td>
+    <td>{{ class.instructor  }}</td>
+    <td>{{ class.price|floatformat:0|intcomma }}</td>
+    <td>{{ class.stock }}</td>
+    <td>
+      <button class="btn btn-{{ class.ticket_status|yesno:'primary,warning,danger' }} btn-sm"
+              {% if class.ticket_status == 'sold_out' %}disabled{% endif %}>
+          {{ class.get_ticket_status_display }}
+      </button>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>

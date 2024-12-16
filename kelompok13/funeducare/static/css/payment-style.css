@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  text-decoration: none;
+  list-style: none;
+}
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: #fffefa;
+
+  --big-font: 3rem;
+  --title-font: 40px;
+  --p-font: 1rem;
+}
+body {
+  background: var(--bg-color);
+}
+.head-content h3 {
+  font-size: 27px;
+  color: var(--text-color1);
+  font-weight: 400;
+}
+.head-content p {
+  font-size: 17px;
+  color: var(--text-color1);
+  font-weight: 400;
+}
+.content-1 h4 {
+  font-size: 23px;
+  color: var(--text-color1);
+  font-weight: 500;
+}
+.content-1 h5 {
+  font-size: 23px;
+  font-weight: 600;
+  background: linear-gradient(to right, #011f46, var(--main-color));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.line {
+  border: 0; /* Menghapus border default */
+  height: 2px; /* Mengatur ketebalan garis */
+  background-color: #000; /* Mengatur warna garis (biru) */
+}
+.caption p {
+  font-size: 18px;
+  color: var(--text-color1);
+  font-weight: 500;
+}
+.booking h4 {
+  font-size: 15px;
+  color: var(--text-color1);
+  opacity: 90%;
+  font-weight: 400;
+}
+.booking h5 {
+  font-size: 18px;
+  color: var(--text-color1);
+  opacity: 90%;
+  font-weight: 400;
+}
+.head {
+  background: linear-gradient(to right, #011f46, var(--main-color));
+}
+.card h5 {
+  color: var(--text-color2);
+  font-size: 18px;
+  font-weight: 500;
+}
+.list li {
+  font-size: 18px;
+  color: var(--text-color1);
+  opacity: 90%;
+  font-weight: 400;
+  cursor: pointer;
+}
+/* Styling for collapse transition */
+.collapse {
+  transition: max-height 0.3s ease-out;
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height 0.3s ease-out;
+  -moz-transition: max-height 0.3s ease-out;
+  -ms-transition: max-height 0.3s ease-out;
+  -o-transition: max-height 0.3s ease-out;
+}
+
+.collapse.show {
+  max-height: 1000px;
+}
+.popupform {
+  color: var(--text-color1);
+}
+.popupform p {
+  font-size: var(--p-font);
+  font-weight: 400;
+  opacity: 90%;
+}
+.text {
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 90%;
+}
+.btn-payment {
+  background-color: #15a6f5;
+  color: var(--text-color2);
+}
+.popupva {
+  color: var(--text-color1);
+}
+.popupva p {
+  font-size: var(--p-font);
+  font-weight: 400;
+}
+.popupva strong {
+  font-size: 20px;
+}
+.popupva h2 {
+  font-size: 40px;
+  font-weight: 400;
+  opacity: 95%;
+  border: 2px dashed rgb(186, 186, 186);
+  padding: 5px;
+}
+.popupva h4 {
+  font-size: 20px;
+  font-weight: 400;
+  opacity: 95%;
+}
+.popupva h3 {
+  font-size: 27px;
+  font-weight: 400;
+  opacity: 95%;
+}
+.popupqris p {
+  font-size: var(--p-font);
+  color: var(--text-color1);
+  opacity: 95%;
+  font-weight: 400;
+}

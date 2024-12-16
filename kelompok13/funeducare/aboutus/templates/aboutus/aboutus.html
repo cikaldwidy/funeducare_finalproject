@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %} {% block head_title %}Funeducare-aboutus{% endblock head_title %}
+ {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/aboutus-style.css' %}" />
+{% endblock %} 
+{% block body_block %}
+
+<header>
+  <section class="image-section">
+    <img
+      src="{%static 'images/bg-aboutus.png' %}"
+      alt="Background Menu Aboutus"
+    />
+    <div class="overlay content-1">
+      <h1>About Us</h1>
+      <hr class="garis mx-auto mx-md-0" />
+    </div>
+  </section>
+</header>
+<main id="siapakami" class="container">
+  <section class="text-center">
+    <div class="jumbotron text-center" style="margin-top: 100px">
+      <h1>Siapa Kami?</h1>
+      <img
+        src="{%static 'images/logo2.png' %}"
+        alt="Logo Platform"
+        width="150"
+        height="150"
+      />
+      <p>
+        FunEduCare siap mendampingi tumbuh kembang si kecil dalam lingkungan
+        penuh kasih, aman, dan edukatif. Berlokasi di Jl. Mawar No. 123,
+        Jakarta, kami menawarkan fasilitas lengkap seperti ruang bermain, ruang
+        belajar nyaman, pengawasan CCTV 24/7, serta program pendidikan
+        menyenangkan. Layanan kami fleksibel—full-day, half-day, atau sesuai
+        kebutuhan Anda, dengan pilihan harian, mingguan, atau bulanan. Anak-anak
+        akan mendapat pengasuhan penuh perhatian, makanan sehat, aktivitas
+        edukatif, serta laporan perkembangan harian. Orang tua juga bisa
+        memantau aktivitas anak dan berkomunikasi langsung dengan pengasuh
+        melalui platform kami. Bergabunglah dengan FunEduCare dan ciptakan masa
+        kecil yang penuh kebahagiaan!
+      </p>
+    </div>
+  </section>
+  <section class="text-center content2">
+    <h1>Visi</h1>
+    <article class="col-sm-8 mx-auto" style="text-align: center">
+      Menciptakan lingkungan pendidikan yang aman, kreatif, dan mendukung
+      perkembangan anak secara holistik, serta membantu anak-anak tumbuh menjadi
+      pribadi yang cerdas, mandiri, dan percaya diri.
+    </article>
+    <br />
+    <h1>Misi</h1>
+    <article class="col-sm-8 mx-auto" style="text-align: justify">
+      <ol>
+        <li>
+          Menyediakan program pendidikan yang sesuai dengan usia anak dan fokus
+          pada pengembangan keterampilan kognitif, motorik, dan sosial, agar
+          anak-anak dapat belajar dan berkembang dengan optimal.
+        </li>
+        <li>
+          Menghadirkan guru-guru yang profesional dan berpengalaman dalam
+          pendidikan anak usia dini, sehingga setiap anak mendapatkan perhatian
+          dan pengajaran yang terbaik.
+        </li>
+        <li>
+          Menciptakan suasana belajar yang menyenangkan melalui pendekatan
+          bermain sambil belajar, yang dapat meningkatkan minat dan motivasi
+          anak dalam belajar.
+        </li>
+        <li>
+          Menjamin keamanan dan kenyamanan anak-anak dengan fasilitas yang ramah
+          anak dan standar keselamatan tinggi, untuk memberikan rasa tenang bagi
+          orang tua saat menitipkan anak mereka.
+        </li>
+        <li>
+          Bekerja sama dengan orang tua dalam mendukung perkembangan dan
+          kemajuan anak secara berkelanjutan, dengan komunikasi yang terbuka dan
+          transparan.
+        </li>
+      </ol>
+    </article>
+  </section>
+  <hr class="divider" />
+  <section class="text-center">
+    <h1>Para Pengajar Kami</h1>
+    <p>
+      Kami memiliki tenaga pengasuh profesional yang siap menjaga dan
+      mendampingi anak-anak dengan penuh kasih sayang.
+    </p>
+
+    <div id="carouselTeachers" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        {% for guru in gurus %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <article class="pengajar-item shadow-box mx-auto">
+            <img
+              src="{{ guru.foto.url }}"
+              alt="{{ guru.nama }}"
+              class="img-fluid rounded-circle mx-auto d-block"
+            />
+            <h3>{{ guru.nama }}</h3>
+            <p>{{ guru.deskripsi_singkat }}</p>
+            <a href="#detail" class="more-info">Informasi selengkapnya...</a>
+            <div class="additional-info">
+              <p id="detail">{{ guru.deskripsi_detail }}</p>
+            </div>
+          </article>
+        </div>
+        {% endfor %}
+      </div>
+
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselTeachers"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Sebelumnya</span>
+      </button>
+
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselTeachers"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Berikutnya</span>
+      </button>
+    </div>
+  </section>
+  <hr class="divider" />
+  <section id="galeri" class="text-center gallery">
+    <h1>Galeri</h1>
+    <p>
+      Lihatlah momen-momen kebersamaan dalam belajar dan bermain anak - anak
+    </p>
+
+    <div id="carouselGallery" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        {% for galeri in galeris %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <article class="gallery-item shadow-box mx-auto">
+            <img
+              src="{{ galeri.foto.url }}"
+              alt="{{ galeri.judul }}"
+              class="img-fluid rounded"
+            />
+            <div class="gallery-description">
+              <p>{{ galeri.judul }}</p>
+              <a href="#" class="more-info">Informasi selengkapnya...</a>
+              <div class="additional-info">
+                <p id="detail">{{ galeri.deskripsi_detail }}</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        {% endfor %}
+      </div>
+
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselGallery"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Sebelumnya</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselGallery"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Berikutnya</span>
+      </button>
+    </div>
+  </section>
+</main>
+<!-- link js -->
+<!-- Di bagian head atau sebelum closing body -->
+{% block extra_js %}
+<script src="{% static 'js/aboutus.js' %}"></script>
+{% endblock %} {% endblock %}

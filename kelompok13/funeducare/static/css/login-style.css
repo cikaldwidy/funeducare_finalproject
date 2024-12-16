@@ -1,0 +1,350 @@
+/* General Reset for Font */
+* {
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: #fffefa;
+
+  --big-font: 3rem;
+  --title-font: 40px;
+  --p-font: 1rem;
+}
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    transform: scale(1.2); /* Zoom in */
+  }
+  100% {
+    transform: scale(1); /* Return to normal size */
+  }
+}
+
+/* Body Styling */
+body {
+  display: grid;
+  place-items: center; /* Centers the content */
+  height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
+/* Home Section */
+.home {
+  display: flex;
+  place-items: start; /* Align to left */
+  justify-self: start; /* Position at the left of the grid */
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+}
+.bi {
+  width: 20px;
+  height: 20px;
+}
+.home svg {
+  color: #03aef0;
+  text-decoration: none;
+}
+
+.home:hover {
+  color: #ee0d52;
+}
+
+/* Main Content */
+.content {
+  padding: 10px;
+  box-shadow: 0 0 10px black;
+  border-radius: 20px;
+  width: fit-content;
+  height: fit-content;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+/* Form Styling */
+
+.picture {
+  background-color: #03aef0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  height: 600px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.img {
+  border-radius: 20px;
+  animation: move 5s infinite;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.box h1 {
+  font-size: 40px;
+  font-weight: 510;
+  background: linear-gradient(to right, var(--main-color), #ee0d62);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.box p {
+  font-size: var(--p-font);
+  font-weight: 500;
+  color: #011f46;
+}
+.reset {
+  text-decoration: none;
+  color: var(--main-color);
+  font-size: var(--p-font);
+  font-weight: 600;
+}
+.logo {
+  text-decoration: none;
+  color: var(--text-color1);
+}
+
+label {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color1);
+  opacity: 90%;
+  margin-bottom: 8px; /* Jarak bawah antara label dan input */
+  display: block; /* Membuat label menjadi block untuk lebih teratur */
+}
+input {
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+  padding-top: 20px;
+}
+
+.submit-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 5px;
+  padding-right: 30px;
+  padding-left: 1%;
+}
+
+/* Button Styling */
+/* Button Styling */
+.button-group .btn {
+  display: inline-block;
+  padding: 15px 20px;
+  height: 50px;
+  width: auto;
+  color: var(--bg-color);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+/* btn btn-2 */
+.button-group .btn-2 {
+  background-color: #ee0d62;
+}
+/* btn btn-1 */
+.button-group .btn-1 {
+  background-color: var(--main-color);
+}
+
+.button-group .btn:hover {
+  color: var(--text-color1);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 1);
+  opacity: 0.9;
+  background-color: var(--bg-color);
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+}
+
+.box {
+  padding-bottom: 20px;
+}
+
+.link {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+.link:hover {
+  font-weight: bold;
+  color: #ee0d52;
+}
+/* Modal Pop-up Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.2);
+  backdrop-filter: blur(5px); /* Blur effect for background */
+}
+
+.modal-content {
+  background-color: white;
+  margin: auto;
+  margin-top: 150px;
+  padding: 10px;
+  border-radius: 15px;
+  width: 500px;
+  height: 400px;
+  text-align: center;
+  box-shadow: 0 0 50px black;
+}
+
+.verified {
+  height: 150px;
+  width: 150px;
+  margin-left: 160px;
+  transition: transform 10s ease;
+  animation: zoom 2s 1;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal p {
+  font-size: 150%;
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+.modal-body {
+  font-size: 100%;
+}
+
+.modal img {
+  size: 20px;
+}
+
+.submit .btn {
+  width: 100%;
+  /* Mengatur lebar tombol */
+  background-color: var(--main-color);
+  /* Mengatur warna latar tombol */
+  border-radius: 5px;
+  /* Membuat sudut tombol melengkung dengan radius 15px */
+  font-weight: bold;
+  /* Mengatur teks tombol menjadi tebal */
+  color: white;
+}
+
+.submit .btn:hover {
+  background-color: white;
+  /* Mengubah warna latar tombol saat hover */
+  color: var(--main-color);
+  border: solid 1px var(--main-color);
+  /* Mengubah warna border tombol saat hover */
+}
+/* google */
+:root {
+  --color-1: #4285f4; /* Blue */
+  --color-2: #ea4335; /* Red */
+  --color-3: #fbbc05; /* Yellow */
+  --color-4: #4285f4; /* Green */
+  --color-5: #34a853; /* Pink */
+  --color-6: #ea4335; /* Teal */
+}
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.google:nth-child(1) {
+  color: var(--color-1);
+}
+
+.google:nth-child(2) {
+  color: var(--color-2);
+}
+
+.google:nth-child(3) {
+  color: var(--color-3);
+}
+
+.google:nth-child(4) {
+  color: var(--color-4);
+}
+
+.google:nth-child(5) {
+  color: var(--color-5);
+}
+
+.google:nth-child(6) {
+  color: var(--color-6);
+}
+
+/* popup */
+.loginpopup h5 {
+  font-size: 30px;
+  color: var(--text-color1);
+  font-weight: 600;
+}
+.modal-header h5 {
+  font-size: 20px;
+  color: var(--text-color1);
+  font-weight: 500;
+}
+.text {
+  font-size: 17px;
+  color: var(--text-color1);
+  font-weight: 500;
+  opacity: 90%;
+}

@@ -1,0 +1,64 @@
+/* styles.css */
+
+/* Mengatur margin dan padding agar elemen terlihat rapi */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header */
+h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+/* Styling untuk kartu aktivitas */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.card-body {
+  font-size: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+/* Menambahkan warna latar belakang untuk header kartu */
+.bg-primary {
+  background-color: #3498db !important;
+}
+.bg-warning {
+  background-color: #f39c12 !important;
+}
+.bg-success {
+  background-color: #2ecc71 !important;
+}
+.bg-info {
+  background-color: #1abc9c !important;
+}
+
+/* Styling untuk tombol atau elemen interaktif lainnya */
+.btn {
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+/* Agar elemen dalam kartu lebih terstruktur */
+.card-body p {
+  line-height: 1.6;
+}
+
+.card-body p strong {
+  color: #34495e;
+}

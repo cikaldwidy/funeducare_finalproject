@@ -1,0 +1,402 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/*Mengatur seluruh elemen*/
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: #fffefa;
+
+  --big-font: 3rem;
+  --title-font: 40px;
+  --p-font: 1rem;
+}
+
+/*Mengatur Navbar*/
+/* navbar */
+.navbar-brand img {
+  height: auto;
+}
+/* sb-1 */
+.offcanvas-title .logo-small {
+  width: 50px;
+  height: auto;
+}
+.signup-button {
+  background-color: var(--main-color);
+  opacity: 100%;
+  color: var(--text-color2);
+  font-size: 13px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s backgroud-color;
+  -webkit-transition: 0.3s backgroud-color;
+  -moz-transition: 0.3s backgroud-color;
+  -ms-transition: 0.3s backgroud-color;
+  -o-transition: 0.3s backgroud-color;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+.signup-button:hover {
+  background-color: var(--main-color);
+  opacity: 80%;
+}
+/* sb-2 */
+.signin-button {
+  background-color: #ee0d62;
+  opacity: 100%;
+  color: var(--text-color2);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s backgroud-color;
+  -webkit-transition: 0.3s backgroud-color;
+  -moz-transition: 0.3s backgroud-color;
+  -ms-transition: 0.3s backgroud-color;
+  -o-transition: 0.3s backgroud-color;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+.signin-button:hover {
+  background-color: #ee0d62;
+  opacity: 80%;
+}
+.offcanvas-header img {
+  width: 130px;
+  height: auto;
+}
+.offcanvas-body {
+  font-size: 10px;
+}
+.navbar-toggler {
+  border: none;
+  font-size: 1.5rem;
+}
+
+.navbar-toggler:focus,
+.btn-close:focus {
+  box-shadow: none;
+  outline: none;
+}
+.navbar .nav-link.active {
+  color: var(--text-color1);
+  opacity: 90%;
+}
+.navbar .nav-link {
+  color: var(--text-color1);
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+}
+
+@media (min-width: 990px) {
+  .navbar .nav-link::before {
+    content: "";
+    color: var(--text-color2);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1.5px;
+    background-color: var(--text-color1);
+    opacity: 80%;
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -ms-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+  }
+
+  .navbar .nav-link:hover::before,
+  .navbar .navlink.active::before {
+    color: var(--text-color1);
+    width: 100%;
+    visibility: visible;
+  }
+}
+.navbar .nav-link.active::before {
+  color: var(--text-color1);
+  width: 100%;
+  visibility: visible;
+}
+
+/*Mengatur tampilan depan programs*/
+.image-section {
+  position: relative;
+  /*Menetapkan posisi elemen relatif terhadap posisinya sendiri.*/
+  height: 50vh;
+  /*Menentukan tinggi elemen 50% dari viewport height */
+  overflow: hidden;
+  /*Menyembunyikan konten yang melebihi batas elemen yang ditampilkan / terpotong*/
+}
+
+.image-section img {
+  width: 100%;
+  /*Gambar melebar penuh sesuai dengan ukuran container*/
+  height: 100%;
+  /*Gambar meninggi penuh sesuai dengan ukuran container*/
+  object-fit: cover;
+  /*Gambar tidak terdistorsi dan terlihat baik, karena mengisi seluruh area tanpa mengubah rasio*/
+}
+
+.overlay {
+  position: absolute;
+  /*Agar relatif bergerak terhadap posisi element parent-nya yaitu position relative*/
+  top: 0;
+  /*Membuat overlay menutupi seluruh area di atas konten di bawahnya.*/
+  left: 0;
+  /*Membuat overlay menutupi seluruh area di atas konten di bawahnya.*/
+  width: 100%;
+  /*Menentukan lebar overlay agar mengisi seluruh ruang*/
+  height: 100%;
+  /*Menentukan tinggi overlay agar mengisi seluruh ruang*/
+  display: flex;
+  /*Mengatur penataan konten di dalamnya dengan mudah. */
+  flex-direction: column;
+  /*Mengatur arah penataan elemen agar disusun secara vertikal*/
+  justify-content: center;
+  /*Menyusun elemen  di tengah secara vertikal dalam overlay.*/
+  align-items: center;
+  /*Menyusun elemen  di tengah secara horizontal dalam overlay.*/
+  color: black;
+  /*Mengatur elemen teks menjadi warna putih*/
+  text-align: center;
+  /*mengatur teks didalam menjadi ke tengah*/
+}
+
+.img-custom {
+  max-width: 400px;
+  /* Atur lebar maksimum sesuai kebutuhan */
+  width: 100%;
+  /* Agar tetap responsif */
+  height: auto;
+  /* Menjaga rasio aspek */
+}
+
+/* footer */
+#backToTop {
+  position: absolute; /* Membuat tombol bisa ditempatkan di bagian footer */
+}
+
+.list1,
+.footer-links,
+.list2 {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list1 li,
+.footer-links li,
+.list2 li {
+  margin-bottom: 10px;
+}
+
+/* Gaya untuk tautan di list1 */
+.list1 a {
+  color: var(--text-color2);
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.list1 a:hover {
+  text-decoration: underline;
+}
+
+/* Gaya untuk tautan di footer-links */
+.footer-links a {
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Gaya untuk tautan di list2 */
+.list2 a {
+  color: var(--text-color2);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+}
+
+.list2 a:hover {
+  text-decoration: underline; /* Garis bawah saat hover */
+}
+
+/* Gaya untuk judul di footer */
+.footer h4 {
+  color: var(--text-color2);
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* Gaya untuk footer */
+.footer {
+  background: linear-gradient(to right, #011f46, var(--main-color));
+  opacity: 0.9;
+}
+
+/* Gaya untuk elemen tambahan */
+.list4,
+.follow,
+.copyright {
+  color: var(--text-color2);
+}
+
+.list2 a:hover {
+  text-decoration: underline;
+  /* Garis bawah saat hover */
+}
+
+/* Gaya untuk judul di footer */
+.footer h4 {
+  color: var(--text-color2);
+  /* Menggunakan variabel warna */
+  font-weight: 600;
+  /* Bobot font */
+  font-size: 20px;
+  /* Ukuran font */
+}
+
+/* Gaya untuk footer */
+.footer {
+  background: linear-gradient(to right, #011f46, var(--main-color));
+  /* Gradien latar belakang */
+  opacity: 0.9;
+  /* Transparansi */
+}
+
+/* Gaya untuk elemen tambahan */
+.list4,
+.follow,
+.copyright {
+  color: var(--text-color2);
+  /* Menggunakan variabel warna */
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.list-group {
+  flex-grow: 1;
+}
+
+.button-group {
+  margin-top: auto;
+}
+
+/* Tombol button */
+.button-group .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  width: 180px;
+  color: var(--bg-color);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+}
+
+/* button 2 css */
+.button-group .btn-2 {
+  background-color: var(--main-color);
+}
+
+/* button 2 css */
+.button-group .btn-1 {
+  background-color: #ee0d62;
+}
+
+/* animasi*/
+.button-group .btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 1);
+  opacity: 0.9;
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+}
+
+/* gradien css judul */
+.content-1 h1 {
+  font-size: 70px;
+  font-weight: 650;
+  background: linear-gradient(to right, var(--main-color), #ee0d62);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  align-items: start;
+  margin-top: 5rem;
+}
+
+.content-1 p {
+  margin-top: 10px;
+  color: var(--text-color1);
+  opacity: 90%;
+  font-weight: 400;
+  margin-bottom: 20px;
+  letter-spacing: 0.3px;
+  font-size: 17px;
+}
+
+.garis {
+  opacity: 97%;
+  height: 1px;
+  background: linear-gradient(50deg, #011f46, var(--main-color));
+  border: none;
+  border-radius: 17px;
+  width: 90%;
+}
+
+.content-2 h2 {
+  font-size: 37px;
+  font-weight: 650;
+  background: linear-gradient(to right, #011f46, var(--main-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/*Animasi dari perpaduan js*/
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}

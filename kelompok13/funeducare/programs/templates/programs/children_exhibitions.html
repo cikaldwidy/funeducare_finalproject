@@ -1,0 +1,20 @@
+{% load humanize %}
+<tbody>
+  {% for exhibition in exhibition %}
+  <tr>
+    <td>{{ exhibition.date|date:"d F Y" }}</td>
+    <td>{{ exhibition.title }}</td>
+    <td>
+      {{ exhibition.description }}
+    </td>
+    <td>{{ exhibition.price|floatformat:0|intcomma }}</td>
+    <td>{{ exhibition.stock }}</td>
+    <td>
+      <button class="btn btn-{{ exhibition.registration_status|yesno:'primary,warning,danger' }} btn-sm"
+              {% if exhibition.registration_status == 'closed' %}disabled{% endif %}>
+          {{ exhibition.get_registration_status_display }}
+      </button>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>

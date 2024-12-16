@@ -1,0 +1,110 @@
+/* Gaya Umum */
+* {
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --bg-color: #fff;
+  --text-color1: #1f1f21;
+  --text-color2: #fff;
+  --main-color: #15a6f5;
+  --bg-opacity: #fffefa;
+
+  --big-font: 3rem;
+  --title-font: 40px;
+  --p-font: 1rem;
+}
+body {
+  background-color: var(--bg-color);
+}
+
+.container {
+  max-width: 900px;
+}
+
+/* Kartu Pembayaran */
+.payment-card {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.payment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-card .card-body {
+  padding: 20px;
+}
+
+.payment-card .card-title {
+  font-weight: 700;
+  color: var(--text-color1);
+  margin-bottom: 10px;
+}
+
+.payment-card .card-text {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Status Pembayaran */
+.badge {
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.bg-success {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+.bg-warning {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+}
+
+.bg-danger {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+/* Tombol Detail Pembayaran */
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Pesan Informasi */
+.alert-info {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+  color: #495057;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* Responsivitas */
+@media (max-width: 768px) {
+  .payment-card .row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .payment-card .text-end {
+    text-align: center !important;
+    margin-top: 10px;
+  }
+}
+.payment-list {
+  max-width: 600px;
+  margin: 0 auto;
+}

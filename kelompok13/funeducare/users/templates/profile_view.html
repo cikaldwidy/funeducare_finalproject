@@ -1,0 +1,85 @@
+{% extends 'base/base_element.html' %}
+{% load static %}
+
+{% block head_title %}FunEduCare - Daftar Anak{% endblock head_title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profilechild-style.css' %}" />
+{% endblock %}
+
+{% block body_block %}
+<div class="container ">
+    <h2 class="text-center mb-4 p-4 title" >👶 Daftar Anak Anda</h2>
+    {% if pending_children %}
+    <div class="alert alert-warning text-center pending-alert" role="alert">
+      <i class="fa-solid fa-chalkboard-user me-2"></i> Pendaftaran anak anda sedang dicek admin Funeducare, tunggu konfirmasi selanjutnya!
+    </div>
+    {% endif %}
+
+    {% if children %}
+    <div class="row rounded-3 p-4 shadow-lg ">
+      <div class="p-3 mx-auto text-center">
+        <a href="{% url 'users:profile' %}" style="text-decoration:none;font-size:20px;font-weight:500;opacity:85%" class="btn btn-warning">📝 Buat profile anak</a>
+      </div>
+      <hr class="mb-4 mt-2">
+        {% for child in children %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card child-card h-100 shadow-lg rounded-3">
+                <div class="text-center p-4">
+                    <img 
+                        src="{% if child.foto_anak %}{{ child.foto_anak.url }}{% else %}{% static 'images/IMG_6643.png' %}{% endif %}"
+                        class="child-image mb-3 rounded-circle shadow-sm" style="width:150px;height:150px"
+                        alt="Foto {{ child.nama_anak }}"
+                    />
+                    
+                    <div class="child-details">
+                        <h5 class="mb-3" style="font-weight:600;opacity:90%">{{ child.nama_anak }}</h5>
+                        <div class="text-start ms-5">
+                            <p><strong>Jenis Kelamin:</strong> {{ child.jenis_kelamin }}</p>
+                            <p><strong>Usia:</strong> {{ child.usia }} tahun</p>
+                            {% comment %} <p>
+                                {% if active_programs %}
+                                <strong>Program:</strong> 
+                                {% for program in active_programs %}
+                                    {{ program.program_name }}
+                                {% endfor %}
+                                {% endif %}
+                            </p> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer mx-auto">
+                    <form 
+                        method="POST" 
+                        action="{% url 'users:delete_child' child.id %}"
+                        class="d-inline"
+                    >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-trash me-2"></i>Hapus
+                        </button>
+                    </form>
+
+                    <a href="#" class="btn btn-warning btn-sm">
+                        <i class="fa fa-edit me-2"></i>Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <hr class="my-2">
+    <div class="empty-state text-center">
+        <p class="text-muted">Anda belum memiliki anak yang terdaftar.</p>
+    </div>
+    {% endif %}
+    <div class="p-2 mt-3 text-center">
+    <a href="{% url 'users:profile-base' %}" style="text-decoration:none;font-size:18px;font-weight:500" class="btn btn-primary">Kembali</a>
+    <a href="{% url 'users:profile-base' %}" style="text-decoration:none;font-size:18px;font-weight:500" class="btn btn-secondary"><i class="fa-solid fa-house"></i> Home</a>
+    </div>
+</div>
+
+<script src="{% static 'js/profilanak.js' %}"></script>
+{% endblock %}

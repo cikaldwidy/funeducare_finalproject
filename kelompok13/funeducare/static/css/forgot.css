@@ -1,0 +1,177 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  /* Memposisikan elemen di tengah grid */
+  height: 80vh;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+    /* ukuran normal */
+  }
+
+  50% {
+    transform: scale(1.2);
+    /* zoom in */
+  }
+
+  100% {
+    transform: scale(1);
+    /* kembali ke ukuran normal */
+  }
+}
+
+.home {
+  display: flex;
+  place-items: start;
+  /* Memposisikan konten .home di kiri atas */
+  justify-self: start;
+  /* Memposisikan elemen .home di sisi kiri grid */
+  margin-left: 10px;
+  gap: 10px;
+  align-items: center;
+}
+
+.home svg {
+  color: #03aef0;
+}
+
+.home:hover {
+  color: #ee0d52;
+}
+
+.link {
+  font-weight: bold;
+  color: #15a6f5;
+}
+
+.link:hover {
+  font-weight: bold;
+  color: #ee0d52;
+}
+
+.text {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+h2 {
+  font-size: 180%;
+  /* Mengatur ukuran font menjadi 250% dari ukuran default */
+  font-weight: bold;
+}
+
+p {
+  font-size: 100%;
+  /* Mengatur ukuran font menjadi 80% dari ukuran default */
+}
+
+.content-forgot {
+  padding: 50px;
+  box-shadow: 0 0 10px black;
+  border-radius: 20px;
+  margin-top: 0;
+  width: fit-content;
+}
+
+.btn {
+  width: 100%;
+  /* Mengatur lebar tombol */
+  background-color: #15a6f5;
+  /* Mengatur warna latar tombol */
+  border-radius: 5px;
+  /* Membuat sudut tombol melengkung dengan radius 15px */
+  font-weight: bold;
+  /* Mengatur teks tombol menjadi tebal */
+  color: white;
+}
+
+.btn:hover {
+  background-color: white;
+  /* Mengubah warna latar tombol saat hover */
+  color: #15a6f5;
+  border: solid 3px #15a6f5;
+  /* Mengubah warna border tombol saat hover */
+}
+
+/* CSS untuk Modal Pop-up */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.2);
+  /* Latar belakang semi transparan */
+  backdrop-filter: blur(5px);
+  /* Efek blur di latar belakang */
+}
+
+.modal-content {
+  background-color: white;
+  margin: auto;
+  margin-top: 150px;
+  padding: 10px;
+  border-radius: 15px;
+  width: 500px;
+  height: 400px;
+  text-align: center;
+  box-shadow: 0 0 50px black;
+}
+
+.verified {
+  height: 150px;
+  width: 150px;
+  margin-left: 160px;
+  transition: transform 10s ease;
+  /* transisi halus */
+  animation: zoom 2s 1;
+  /* animasi zoom berjalan 1 kali */
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal p {
+  font-size: 150%;
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+.modal-body {
+  font-size: 100%;
+}
+
+.modal img {
+  size: 20px;
+}
+
+.btn-modal {
+  margin-top: 20px;
+  background-color: #15a6f5;
+  color: white;
+  width: 300px;
+  margin-left: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-modal:hover {
+  background-color: white;
+  color: #15a6f5;
+  border: 2px solid #15a6f5;
+}
